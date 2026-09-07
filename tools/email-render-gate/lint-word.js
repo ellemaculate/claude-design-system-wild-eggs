@@ -10,10 +10,15 @@
 
 const fs = require("fs")
 const src = fs.readFileSync(process.argv[2], "utf8")
-// EVERY display class must be listed here. A class that is not on this list is invisible to
-// both rules, which is worse than having no lint at all: it reads as a pass. When a new
-// display class is added to a template, add it here in the same commit.
-const DISPLAY = ["dispBig", "dispSub", "couponBig", "panelBig", "stepNum", "quesoWord", "quesoSub"]
+// EVERY display class in EVERY template must be listed here. A class that is not on this list
+// is invisible to both rules, which is worse than having no lint at all: it reads as a pass.
+// When a template adds a display class, add it here in the same commit.
+const DISPLAY = [
+    // Crazy Bowls & Wraps
+    "dispBig", "dispSub", "couponBig", "panelBig", "stepNum", "quesoWord", "quesoSub",
+    // Wild Eggs
+    "h1", "h2", "num", "code", "disp", "quotemark",
+]
 
 const fails = []
 const oks = []
@@ -21,7 +26,7 @@ const t = (c, m) => (c ? oks : fails).push(m)
 
 // Every tag carrying a display class, with its inline style and where it sits.
 const tags = []
-const re = /<(h1|p)\b[^>]*class="([^"]*)"[^>]*>/g
+const re = /<(h1|h2|p|div|span)\b[^>]*class="([^"]*)"[^>]*>/g
 let m
 while ((m = re.exec(src))) {
     const cls = m[2]

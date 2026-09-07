@@ -38,6 +38,16 @@ function withImages(h) {
         .replace(/https:\/\/paytronix-bee[^"']*opt_TacoKit_2_Football\.jpg/g, "opt_TacoKit_2_Football.jpg")
         .replace(/https:\/\/paytronix-bee[^"']*opt_TacoKit_3_protein\.jpg/g, "opt_TacoKit_3_protein.jpg")
         .replace(/https:\/\/paytronix-bee[^"']*Logo[^"']*/g, "logo.png")
+        // Wild Eggs (Mailjet CDN). Mapped by asset UUID to local files of the real dimensions,
+        // so the geometry assertions measure the same pixels the send will.
+        .replace(/https:\/\/0nlz6\.mjt\.lu[^"']*adb58b99[^"']*/g, "we_logo.png")
+        .replace(/https:\/\/0nlz6\.mjt\.lu[^"']*5b86d0f2[^"']*/g, "we_hero.jpg")
+        .replace(/https:\/\/0nlz6\.mjt\.lu[^"']*bba95e85[^"']*/g, "we_chip1.jpg")
+        .replace(/https:\/\/0nlz6\.mjt\.lu[^"']*726854ad[^"']*/g, "we_chip2.jpg")
+        .replace(/https:\/\/0nlz6\.mjt\.lu[^"']*6e339e92[^"']*/g, "we_portrait.jpg")
+        .replace(/https:\/\/0nlz6\.mjt\.lu[^"']*9e1693d1[^"']*/g, "we_waffle.jpg")
+        .replace(/https:\/\/0nlz6\.mjt\.lu[^"']*c53fde98[^"']*/g, "we_fb.png")
+        .replace(/https:\/\/0nlz6\.mjt\.lu[^"']*605da7fb[^"']*/g, "we_ig.png")
         .replace(/https:\/\/paytronix-bee[^"']*ribbon[^"']*/gi, "ribbon.png")
 }
 
@@ -123,6 +133,7 @@ word = word.replace(/animation\s*:[^;"]*;?/gi, "")
 word = word.replace(/'Passion One'/g, "'__MissingDisplay'")
 word = word.replace(/'Bricolage Grotesque'/g, "'__MissingBody'")
 word = word.replace(/'Fraunces'/g, "'__MissingSerif'")
+word = word.replace(/Fraunces,/g, "'__MissingSerif',")
 word =
     word.replace(
         "</head>",

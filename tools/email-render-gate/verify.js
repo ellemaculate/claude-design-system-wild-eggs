@@ -43,9 +43,14 @@ function serve() {
 // Every pair of elements that must never touch. These are the exact collisions
 // photographed in Outlook Classic on the previous send.
 const OVERLAP_PAIRS = [
+    // Crazy Bowls & Wraps
     ["the chip bar", ".m-chip", "the hero headline", ".dispBig"],
     ["the hero headline", ".dispBig", "the hero subhead", ".dispSub"],
     ["the colossal word", ".quesoWord", "its subhead", ".quesoSub"],
+    // Wild Eggs: the offer figure and the code card below it, and the quote mark
+    // against the testimonial copy it sits on top of.
+    ["the offer figure", ".num", "the code card", ".code"],
+    ["the quote mark", ".quotemark", "the testimonial", ".quotecopy"],
 ]
 
 async function geom(page) {
@@ -66,7 +71,8 @@ async function geom(page) {
         const shell = document.querySelector("table.w600")
         if (shell) out.shell = r(shell)
 
-        for (const sel of [".m-chip", ".dispBig", ".dispSub", ".quesoWord", ".quesoSub"]) {
+        for (const sel of [".m-chip", ".dispBig", ".dispSub", ".quesoWord", ".quesoSub",
+                           ".num", ".code", ".h1", ".h2", ".quotemark", ".quotecopy"]) {
             const el = document.querySelector(sel)
             if (el) out.pairs[sel] = r(el)
         }
@@ -193,7 +199,7 @@ async function run(label, file, width, height, opts = {}) {
     // ---- 6. display type stays inside a sane size even with no stylesheet ----
     // Guards the fail-safe direction: the INLINE value must be one that cannot overlap.
     if (opts.inlineOnly) {
-        const hero = g.pairs[".dispBig"] || g.pairs[".quesoWord"]
+        const hero = g.pairs[".dispBig"] || g.pairs[".quesoWord"] || g.pairs[".num"]
         if (hero) {
             check(
                 hero.h <= 120,
@@ -206,7 +212,7 @@ async function run(label, file, width, height, opts = {}) {
     if (!opts.skipAspect) {
         for (const im of g.imgs) {
             if (!im.natW || !im.w) continue
-            if (/logo|ribbon|missing/.test(im.src)) continue
+            if (/logo|ribbon|missing|we_fb|we_ig/.test(im.src)) continue
             const natRatio = im.natW / im.natH
             const renderRatio = im.w / im.h
             const drift = Math.abs(natRatio - renderRatio) / natRatio
