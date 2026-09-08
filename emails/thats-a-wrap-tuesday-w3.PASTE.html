@@ -8,7 +8,7 @@
     
     <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
     
-    <title>One Taco Kit is 70 points on a Tuesday. 200 points is a free meal. Code THATSAWRAP.</title>
+    <title>Double points on everything this Tuesday. One Taco Kit is 70 points. 200 is a free meal.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
     <meta name="color-scheme" content="light">
@@ -18,19 +18,16 @@
     <style type="text/css">
       /* ================================================================
          OUTLOOK CLASSIC (Word engine) OVERRIDES.
+         Outlook 2007-2024 and classic M365 render with WORD, not a browser.
          Every rule here exists because of a failure photographed in a
-         previous send. Read the OUTLOOK section in the body comment
-         before touching any of it.
+         previous send. Read the OUTLOOK section in the body comment.
          ================================================================ */
 
       /* Windows font substitution takes the FIRST name in the stack, fails to find
          "Passion One", and maps it through its own substitution table to a default
          SERIF without ever reaching 'Arial Narrow' or Arial. Naming a real Windows
          font here is the only reliable fix. Impact is the closest always-present
-         match: condensed, heavy, built for caps.
-         Second, line-height below 1 makes Word clip the line box while the glyphs
-         keep their full height, so tall caps bleed upward into whatever sits above.
-         Never go below 100% here. */
+         match: condensed, heavy, built for caps. */
       .dispBig, .couponBig, .panelBig, .stepNum {
         font-family: Impact, 'Arial Narrow', Arial, sans-serif !important;
         font-weight: normal !important;
@@ -38,10 +35,10 @@
         mso-line-height-rule: at-least !important;
       }
       .dispBig  { font-size:54px !important; line-height:108% !important; }
-      .couponBig{ font-size:44px !important; line-height:108% !important; }
+      .couponBig{ font-size:42px !important; line-height:108% !important; }
       .panelBig { font-size:32px !important; line-height:112% !important; }
       .stepNum  { font-size:34px !important; line-height:110% !important; }
-      .dispSub  { font-size:28px !important; line-height:120% !important; mso-line-height-rule:at-least !important; }
+      .dispSub  { font-size:26px !important; line-height:122% !important; mso-line-height-rule:at-least !important; }
 
       /* Everything that is not display type gets a real Windows face. */
       td, p, a, div, span, h1 { font-family: Arial, Helvetica, sans-serif !important; }
@@ -94,14 +91,11 @@
 
       /* ============================================================
          MOTION LAYER: Apple Mail / iOS only. First frame reads static.
-
-         THE WHOLE BLOCK IS WRAPPED IN @media screen ON PURPOSE.
-         Outlook Classic ignores @media entirely, which is exactly what we
-         want: it must never see display:inline-block. On an earlier send
-         these classes sat in the global stylesheet, Word applied
-         display:inline-block to a div, and the chip rendered as a full-width
-         rectangle that the headline then crashed into.
-         Keep every inline-block declaration inside this media block.
+         THE WHOLE BLOCK IS WRAPPED IN @media screen ON PURPOSE, so Outlook
+         Classic never sees display:inline-block. On an earlier send these
+         classes sat in the global stylesheet, Word applied inline-block to
+         a div, and the chip rendered as a full-width bar that the headline
+         then crashed into.
          ============================================================ */
       @media screen {
         .m-head {
@@ -121,7 +115,7 @@
         }
 
         .m-sub {
-          animation: subIn 0.9s ease-out 0.75s backwards;
+          animation: subIn 0.9s ease-out 0.7s backwards;
           display: inline-block;
         }
 
@@ -171,10 +165,9 @@
 
         /* ---- DISPLAY TYPE UPGRADE ----
            The inline styles carry Word-safe sizes and line-heights. These rules scale
-           them up to the intended editorial sizes for clients with a real layout engine.
-           Word never reads @media, so it simply keeps the safe values, and none of this
-           depends on a conditional comment surviving the paste into Paytronix. That
-           dependency is what let a headline crash into the chip above it in production. */
+           them to the intended editorial sizes for clients with a real layout engine.
+           Word never reads @media, so it keeps the safe values, and nothing that
+           prevents a collision depends on a conditional comment surviving the paste. */
         .dispBig {
           font-size: 84px;
           line-height: 0.88;
@@ -182,12 +175,12 @@
         }
 
         .dispSub {
-          font-size: 34px;
-          line-height: 1.08;
+          font-size: 32px;
+          line-height: 1.12;
         }
 
         .couponBig {
-          font-size: 52px;
+          font-size: 50px;
           line-height: 1;
         }
 
@@ -226,9 +219,8 @@
       @media only screen and (max-width:620px) {
 
         /* the 600px shells MUST be forced to 100% here. max-width:100% alone cannot shrink a
-           fixed-width table, so the outer wrapper table expands to its 600px content and the
-           whole email renders 600px wide inside a 375px phone (horizontal scroll / zoom-out).
-           Inherited from send 3. Keep .w600. */
+           fixed-width table, so the outer wrapper expands to its 600px content and the whole
+           email renders 600px wide inside a 375px phone. Inherited from send 3. Keep .w600. */
         .w600 {
           width: 100% !important;
           max-width: 100% !important;
@@ -239,22 +231,20 @@
         }
 
         .dispSub {
-          font-size: 27px !important;
+          font-size: 25px !important;
         }
 
         .couponBig {
-          font-size: 42px !important;
+          font-size: 40px !important;
         }
 
         .panelBig {
-          font-size: 34px !important;
+          font-size: 32px !important;
         }
 
         /* box-sizing is REQUIRED here. Without it, width:100% plus the inline horizontal
            padding on the copy cells adds on top of the 100%, which pushes the whole email
-           wider than the phone and forces a horizontal scroll. Inherited bug from send 3.
-           Keep box-sizing. */
-        .stack2,
+           wider than the phone and forces a horizontal scroll. Keep box-sizing. */
         .stack3 {
           display: block !important;
           width: 100% !important;
@@ -263,39 +253,17 @@
         }
 
         /* EVERY nested table with a fixed px width must be released here. A fixed length on
-           any nested element becomes a min-content floor for the WHOLE email, and no amount of
-           width:100% on .w600 can override it. This one class pinned the shell at 600px on
-           phones. Same bug class as a fixed px max-width on an image. */
+           any nested element becomes a min-content floor for the WHOLE email that no amount
+           of width:100% on .w600 can override. */
         .panelgrid {
           width: 100% !important;
           max-width: 100% !important;
         }
 
-        /* stacked copy cells also get even padding: the desktop values are deliberately
-           asymmetric for the side-by-side layout and read lopsided once stacked. */
-        .stack2copy {
-          padding: 32px 26px !important;
-        }
-
-        /* stacked steps need vertical separation they do not need side by side */
-        .stepcell {
-          padding: 16px 0 18px !important;
-          border-top: 1px solid #D9E2C4 !important;
-        }
-
+        /* stacked rungs need vertical separation they do not need side by side */
         .headcell {
           padding: 14px 0 !important;
           border-top: 1px solid #1F6060 !important;
-        }
-
-        /* Portrait panel photo. On desktop it is a fixed 260px column; stacked on a phone it
-           goes full width, so cap the height or one photo eats the whole screen. object-fit
-           is safe to use HERE and only here, because this rule lives inside a media query and
-           Outlook Classic never reads media queries. */
-        .stack2 img.tallimg {
-          width: 100% !important;
-          height: 380px !important;
-          object-fit: cover !important;
         }
 
         .padx {
@@ -306,6 +274,14 @@
         .padxs {
           padding-left: 24px !important;
           padding-right: 24px !important;
+        }
+
+        /* The lead and the spec line are set to a comfortable measure on desktop with big
+           side padding. On a phone that padding is what causes ragged two-word last lines,
+           so it comes off. */
+        .measure {
+          padding-left: 26px !important;
+          padding-right: 26px !important;
         }
       }
 
@@ -322,6 +298,11 @@
           padding-right: 14px !important;
         }
 
+        .measure {
+          padding-left: 18px !important;
+          padding-right: 18px !important;
+        }
+
         .footnav {
           letter-spacing: 0.02em !important;
           font-size: 12px !important;
@@ -332,15 +313,15 @@
         }
 
         .dispSub {
-          font-size: 23px !important;
+          font-size: 22px !important;
         }
 
         .panelBig {
-          font-size: 29px !important;
+          font-size: 28px !important;
         }
 
         .couponBig {
-          font-size: 36px !important;
+          font-size: 34px !important;
         }
 
         .specline {
@@ -372,7 +353,7 @@
           <div class="w600" style="width:600px; max-width:100%; margin:0 auto; font-family:'Bricolage Grotesque','Open Sans',Arial,Helvetica,sans-serif;">
 
             
-            <div style="display:none; font-size:1px; line-height:1px; max-height:0; max-width:0; overflow:hidden; color:#E4E7E1;">One Taco Kit is 70 points on a Tuesday. 200 points is a free meal. Code THATSAWRAP.</div>
+            <div style="display:none; font-size:1px; line-height:1px; max-height:0; max-width:0; overflow:hidden; color:#E4E7E1;">Double points on everything this Tuesday. One Taco Kit is 70 points. 200 is a free meal.</div>
             <div style="display:none; font-size:1px; line-height:1px; max-height:0; max-width:0; overflow:hidden; color:#E4E7E1;">&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;</div>
 
             <table role="presentation" class="w600" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:100%; background:#FFF6EC; border:3px solid #0D4F4F;">
@@ -380,27 +361,27 @@
               
               <tr>
                 <td align="center" bgcolor="#0D4F4F" style="padding:11px 24px; font-size:13px; color:#C0D8D8; letter-spacing:0.02em; mso-line-height-rule:exactly; line-height:1.4;">
-                  It&rsquo;s Tuesday. Every dollar counts twice. &nbsp;<a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=topbar-cta" style="color:#BCD741; text-decoration:underline; font-weight:800;">Order the kit &#8594;</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<template:link a:style="color:#A9C46B;text-decoration:underline;font-weight:700;" type="campaign_view_url">View in browser</template:link>
+                  Today only. Every dollar counts twice. &nbsp;<a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=topbar-cta" style="color:#BCD741; text-decoration:underline; font-weight:800;">Order&nbsp;now&nbsp;&#8594;</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<template:link a:style="color:#A9C46B;text-decoration:underline;font-weight:700;" type="campaign_view_url">View in browser</template:link>
                 </td>
               </tr>
 
               
               <tr>
-                <td class="padx" align="center" bgcolor="#FFF6EC" style="padding:24px 40px 18px;">
-                  <a href="https://www.crazybowlsandwraps.com?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=logo" style="text-decoration:none;"><img src="https://paytronix-bee.s3.amazonaws.com/images/bos1px-MID60504-user/Crazy%20Bowls%20%26%20Wraps%20Logo%201%20%282%29.png" alt="Crazy Bowls &amp; Wraps" width="210" style="display:block; margin:0 auto; width:210px; max-width:100%; height:auto; border:0;"></a>
+                <td class="padx" align="center" bgcolor="#FFF6EC" style="padding:22px 40px 16px;">
+                  <a href="https://www.crazybowlsandwraps.com?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=logo" style="text-decoration:none;"><img src="https://paytronix-bee.s3.amazonaws.com/images/bos1px-MID60504-user/Crazy%20Bowls%20%26%20Wraps%20Logo%201%20%282%29.png" alt="Crazy Bowls &amp; Wraps" width="200" style="display:block; margin:0 auto; width:200px; max-width:100%; height:auto; border:0;"></a>
                 </td>
               </tr>
 
               
               <tr>
                 <td bgcolor="#0D4F4F" style="padding:0; line-height:0; font-size:0;">
-                  <a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=hero" style="text-decoration:none; display:block;"><img class="heroimg" src="https://paytronix-bee.s3.amazonaws.com/images/bos1px-MID60504-user/opt_TacoKit_2_Football.jpg" alt="The full Taco Kit spread overhead on a terrazzo counter: tortilla chips, black beans, shredded cheddar, romaine, a bowl of grilled chicken, two cups of pico de gallo, warm queso, forks and napkins, tortillas and two iced drinks, with a two-tone white and brown leather football carrying the Crazy Bowls and Wraps logo resting on the counter beside them" width="600" height="403" style="display:block; width:100%; max-width:100%; height:auto; border:0; margin:0 auto; color:#F2F7E0; font-size:13px;"></a>
+                  <a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=hero" style="text-decoration:none; display:block;"><img class="heroimg" src="https://paytronix-bee.s3.amazonaws.com/images/bos1px-MID60504-user/opt_TacoKit_2_Football.jpg" alt="The full Taco Kit spread overhead on a terrazzo counter: tortilla chips, black beans, shredded cheddar, romaine, a bowl of grilled chicken, two cups of pico de gallo, warm queso, tortillas and two iced drinks, with a two-tone white and brown leather football carrying the Crazy Bowls and Wraps logo beside them" width="600" height="403" style="display:block; width:100%; max-width:100%; height:auto; border:0; margin:0 auto; color:#F2F7E0; font-size:13px;"></a>
                 </td>
               </tr>
 
               
               <tr>
-                <td class="padx" align="center" bgcolor="#FFF2E6" style="padding:40px 40px 0;">
+                <td class="padx" align="center" bgcolor="#FFF2E6" style="padding:36px 40px 0;">
                   <table role="presentation" class="pillcell" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:separate; margin:0 auto;">
                     <tr>
                       <td class="m-chip" bgcolor="#0D4F4F" align="center" style="border-radius:999px; padding:10px 22px; mso-padding-alt:10px 22px; font-size:13px; font-weight:800; letter-spacing:0.16em; text-transform:uppercase; color:#F2F7E0; mso-line-height-rule:exactly; line-height:1.2;">That&rsquo;s a Wrap Tuesday</td>
@@ -409,36 +390,35 @@
                 </td>
               </tr>
               <tr>
-                <td class="padx" align="center" bgcolor="#FFF2E6" style="padding:22px 40px 4px;">
+                <td class="padx" align="center" bgcolor="#FFF2E6" style="padding:20px 40px 0;">
                   <h1 class="m-head dispBig" style="margin:0; font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:900; font-size:54px; line-height:1.06; color:#0D4F4F; letter-spacing:0;">70 POINTS.</h1>
-                  <p class="m-sub frn dispSub" style="margin:12px 0 0; font-style:italic; font-weight:600; font-size:28px; line-height:1.2; color:#C42559;">That&rsquo;s one Taco Kit, on a Tuesday.</p>
+                  <p class="m-sub frn dispSub" style="margin:10px 0 0; font-style:italic; font-weight:600; font-size:26px; line-height:1.22; color:#C42559;">That&rsquo;s one Taco Kit. Today only.</p>
                 </td>
               </tr>
 
               
               <tr>
-                <td class="padx" bgcolor="#FFF2E6" style="padding:28px 58px 34px;">
-                  <p style="font-size:17px; color:#2C3A2C; mso-line-height-rule:exactly; line-height:1.75; font-weight:600; margin:0 0 14px;">Hey <template:insert field="first_name">there</template:insert>, the drafts are done and football is back, which means the eating starts. Good news: it is also Tuesday.</p>
-                  <p style="font-size:17px; color:#42513f; mso-line-height-rule:exactly; line-height:1.75; font-weight:600; margin:0 0 14px;">A <b style="color:#0D4F4F;">Taco Kit</b> starts at $35 and feeds four to five. Every dollar earns a point, and on Tuesdays every point counts twice. So one kit puts at least <b style="color:#0D4F4F;">70 points</b> on your card before you have poured a drink.</p>
-                  <p style="font-size:17px; color:#42513f; mso-line-height-rule:exactly; line-height:1.75; font-weight:600; margin:0;">Two hundred is a free meal. You can see where three kits gets you.</p>
+                <td class="padx measure" bgcolor="#FFF2E6" style="padding:24px 62px 32px;">
+                  <p style="font-size:17px; color:#2C3A2C; mso-line-height-rule:exactly; line-height:1.7; font-weight:600; margin:0 0 12px;">Hey <template:insert field="first_name">there</template:insert>, football is back, which means the eating starts. Handy, because today every dollar you spend earns double Crazy&nbsp;Points.</p>
+                  <p style="font-size:17px; color:#42513f; mso-line-height-rule:exactly; line-height:1.7; font-weight:600; margin:0;">A <b style="color:#0D4F4F;">Taco Kit</b> starts at $35 and feeds four to five, so one kit is at least <b style="color:#0D4F4F;">70&nbsp;points</b>. A free meal costs <b style="color:#0D4F4F;">200</b>. You can see where three kits gets you.</p>
                 </td>
               </tr>
 
               
               <tr>
-                <td class="padx" bgcolor="#ffffff" style="padding:34px 48px 8px;">
+                <td class="padx" bgcolor="#ffffff" style="padding:32px 48px 6px;">
                   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F2F7E0" style="background:#F2F7E0; border:2px dashed #0D4F4F; border-radius:18px;">
                     <tr>
-                      <td class="padxs" align="center" style="padding:28px 30px;">
-                        <p style="font-size:13px; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; color:#BC3C96; margin:0 0 10px; mso-line-height-rule:exactly; line-height:1.3;">Every Tuesday</p>
-                        <p class="couponBig" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:44px; line-height:1.08; color:#0D4F4F; margin:0 0 10px;">Double Crazy Points</p>
-                        <p class="specline" style="font-size:15px; font-weight:800; letter-spacing:0.02em; color:#0D4F4F; margin:0 0 18px; mso-line-height-rule:exactly; line-height:1.7;">$1 = 1 point &nbsp;&middot;&nbsp; 200 points = a free meal &nbsp;&middot;&nbsp; the whole menu</p>
+                      <td class="padxs" align="center" style="padding:26px 30px;">
+                        <p style="font-size:13px; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; color:#BC3C96; margin:0 0 8px; mso-line-height-rule:exactly; line-height:1.3;">Today only</p>
+                        <p class="couponBig" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:42px; line-height:1.08; color:#0D4F4F; margin:0 0 8px;">Double Crazy Points</p>
+                        <p class="specline" style="font-size:15px; font-weight:800; color:#0D4F4F; margin:0 0 16px; mso-line-height-rule:exactly; line-height:1.6;">$1&nbsp;=&nbsp;1&nbsp;point &nbsp;&middot;&nbsp; 200&nbsp;points&nbsp;=&nbsp;a&nbsp;free&nbsp;meal</p>
                         <table role="presentation" class="pillcell" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:separate; margin:0 auto;">
                           <tr>
                             <td class="m-tag" align="center" bgcolor="#DA2D65" style="border-radius:12px; padding:12px 26px; mso-padding-alt:12px 26px; font-size:17px; font-weight:800; letter-spacing:0.1em; color:#ffffff; mso-line-height-rule:exactly; line-height:1.2;">code: THATSAWRAP</td>
                           </tr>
                         </table>
-                        <p style="font-size:14px; font-weight:700; color:#2C3A2C; margin:16px 0 0; mso-line-height-rule:exactly; line-height:1.6;">Use it online. In store it is automatic for members.</p>
+                        <p style="font-size:14px; font-weight:700; color:#2C3A2C; margin:14px 0 0; mso-line-height-rule:exactly; line-height:1.6;">Online, or automatic in store for members.</p>
                       </td>
                     </tr>
                   </table>
@@ -447,7 +427,7 @@
 
               
               <tr>
-                <td class="padx" align="center" bgcolor="#ffffff" style="padding:26px 40px 34px;">
+                <td class="padx" align="center" bgcolor="#ffffff" style="padding:24px 40px 8px;">
                   <table role="presentation" class="pillcell" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:separate; margin:0 auto;">
                     <tr>
                       <td align="center" bgcolor="#0D4F4F" style="border-radius:999px; border:2px solid #A3BF1E; padding:18px 46px; mso-padding-alt:18px 46px;">
@@ -455,80 +435,19 @@
                       </td>
                     </tr>
                   </table>
-                  <p style="font-size:14px; font-weight:700; margin:16px 0 0;"><a href="https://crazybowlsandwraps.myguestaccount.com?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=points-balance" style="color:#0D4F4F; text-decoration:underline;">See how close you are to a free meal &#8594;</a></p>
+                </td>
+              </tr>
+              <tr>
+                <td class="padx measure" align="center" bgcolor="#ffffff" style="padding:16px 62px 30px;">
+                  <p style="font-size:15px; font-weight:700; color:#42513f; margin:0 0 8px; mso-line-height-rule:exactly; line-height:1.7;"><b style="color:#0D4F4F;">The Taco Kit, $35.</b> Twelve tortilla shells, warm queso, a side of chips and salsa, and up&nbsp;to&nbsp;four&nbsp;drinks, plus beans, lettuce and cheddar. Serves&nbsp;4&nbsp;to&nbsp;5. Then you pick the protein.</p>
+                  <p style="font-size:14px; font-weight:700; margin:0;"><a href="https://crazybowlsandwraps.myguestaccount.com?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=points-balance" style="color:#0D4F4F; text-decoration:underline;">See how close you are to a free meal &#8594;</a></p>
                 </td>
               </tr>
 
               
               <tr>
-                <td class="padx" bgcolor="#FFF6EC" style="padding:34px 48px 10px;">
-                  <p style="font-size:13px; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; color:#BC3C96; margin:0 0 4px; text-align:center; mso-line-height-rule:exactly; line-height:1.3;">What lands on the table</p>
-                  <p class="panelBig" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:32px; color:#0D4F4F; line-height:1.12; margin:6px 0 14px; text-align:center;">The Taco Kit, $35.</p>
-                  <p class="specline" style="font-size:14px; font-weight:700; color:#2C3A2C; margin:0 0 6px; text-align:center; mso-line-height-rule:exactly; line-height:1.8;"><b>12</b> tortilla shells &nbsp;&middot;&nbsp; <b>1</b> warm queso &nbsp;&middot;&nbsp; <b>1</b> side of chips and salsa &nbsp;&middot;&nbsp; <b>up to 4</b> drinks</p>
-                  <p class="specline" style="font-size:14px; font-weight:700; color:#5f6b4c; margin:0 0 12px; text-align:center; mso-line-height-rule:exactly; line-height:1.8;">plus black beans, shredded lettuce and cheddar &middot; serves 4&ndash;5</p>
-                  <p style="font-size:14px; font-weight:700; color:#2C3A2C; margin:0; text-align:center; mso-line-height-rule:exactly; line-height:1.6;">Then you pick the protein. Priced by selection.</p>
-                </td>
-              </tr>
-
-              
-              <tr>
-                <td class="padx" bgcolor="#FFF6EC" style="padding:22px 48px 10px;">
-                  <p style="font-size:13px; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; color:#BC3C96; margin:0 0 4px; text-align:center; mso-line-height-rule:exactly; line-height:1.3;">Three picks and you are done</p>
-                </td>
-              </tr>
-              <tr>
-                <td class="padx" bgcolor="#FFF6EC" style="padding:8px 48px 34px;">
-                  <table role="presentation" class="panelgrid" width="498" cellpadding="0" cellspacing="0" border="0" style="width:498px; max-width:100%;">
-                    <tr>
-                      <td class="stack3 stepcell" width="166" valign="top" style="width:166px; padding:0 12px 0 0;">
-                        <p class="stepNum" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:38px; color:#A3BF1E; margin:0 0 2px; line-height:1.1;">1</p>
-                        <p style="font-size:15px; font-weight:800; color:#0D4F4F; margin:0 0 5px; mso-line-height-rule:exactly; line-height:1.35;">Pick a protein</p>
-                        <p style="font-size:13px; font-weight:600; color:#5f6b4c; margin:0; mso-line-height-rule:exactly; line-height:1.55;">Grilled or crunchy chicken, tenderloin steak, king salmon. Priced by selection.</p>
-                      </td>
-                      <td class="stack3 stepcell" width="166" valign="top" style="width:166px; padding:0 12px;">
-                        <p class="stepNum" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:38px; color:#A3BF1E; margin:0 0 2px; line-height:1.1;">2</p>
-                        <p style="font-size:15px; font-weight:800; color:#0D4F4F; margin:0 0 5px; mso-line-height-rule:exactly; line-height:1.35;">Pick a salsa</p>
-                        <p style="font-size:13px; font-weight:600; color:#5f6b4c; margin:0; mso-line-height-rule:exactly; line-height:1.55;">A side of chips and salsa comes with the kit at no extra charge.</p>
-                      </td>
-                      <td class="stack3 stepcell" width="166" valign="top" style="width:166px; padding:0 0 0 12px;">
-                        <p class="stepNum" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:38px; color:#A3BF1E; margin:0 0 2px; line-height:1.1;">3</p>
-                        <p style="font-size:15px; font-weight:800; color:#0D4F4F; margin:0 0 5px; mso-line-height-rule:exactly; line-height:1.35;">Pick your drinks</p>
-                        <p style="font-size:13px; font-weight:600; color:#5f6b4c; margin:0; mso-line-height-rule:exactly; line-height:1.55;">Up to four, included. Fountain, tea, horchata or a craft soda.</p>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-
-              
-              <tr>
-                <td class="padx" bgcolor="#EDF3D8" style="padding:16px 48px;">
-                  <p style="font-size:14px; font-weight:700; color:#40501F; margin:0; text-align:center; mso-line-height-rule:exactly; line-height:1.6;">Feeding a vegetarian? <b style="color:#0D4F4F;">Falafel, grilled tofu and plant based chicken</b> are all on the protein list, same kit, same table.</p>
-                </td>
-              </tr>
-
-              
-              <tr>
-                <td bgcolor="#F2F7E0" style="padding:0;">
-                  <table role="presentation" class="panelgrid" width="594" cellpadding="0" cellspacing="0" border="0" style="width:594px; max-width:100%;">
-                    <tr>
-                      <td class="stack2" width="260" valign="middle" style="width:260px; padding:0; line-height:0; font-size:0;">
-                        <a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=protein-photo" style="text-decoration:none;"><img class="tallimg" src="https://paytronix-bee.s3.amazonaws.com/images/bos1px-MID60504-user/opt_TacoKit_3_protein.jpg" alt="A large bowl of sliced grilled chicken beside romaine, pico de gallo, warm queso, a bag of tortilla chips and an iced tea on a wooden board" width="260" height="347" style="display:block; width:260px; height:347px; border:0; color:#0D4F4F; font-size:13px;"></a>
-                      </td>
-                      <td class="stack2 stack2copy" width="334" valign="middle" style="width:334px; padding:38px 34px 38px 26px;">
-                        <p class="frn" style="font-style:italic; font-weight:600; font-size:16px; color:#5F7010; margin:0; mso-line-height-rule:exactly; line-height:1.4;">Depth wins Tuesdays</p>
-                        <p class="panelBig" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:32px; color:#0D4F4F; line-height:1.12; margin:8px 0 12px;">Add a second protein.</p>
-                        <p style="font-size:15px; color:#42513f; mso-line-height-rule:exactly; line-height:1.65; font-weight:600; margin:0 0 18px;">One protein feeds the kit. A second one ends the argument about which protein. Add an <b style="color:#0D4F4F;">Extra Protein</b> and the table gets deeper, and so does the points haul, because today every dollar of it counts twice.</p>
-                        <table role="presentation" class="pillcell" cellpadding="0" cellspacing="0" border="0" align="left" style="border-collapse:separate;">
-                          <tr>
-                            <td bgcolor="#0D4F4F" align="center" style="border-radius:999px; padding:13px 28px; mso-padding-alt:13px 28px;">
-                              <a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=protein-cta" style="display:block; color:#F2F7E0; font-weight:800; font-size:15px; text-decoration:none; mso-line-height-rule:exactly; line-height:1.1;">Add a second &#8594;</a>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
+                <td class="padx" bgcolor="#EDF3D8" style="padding:14px 48px;">
+                  <p style="font-size:14px; font-weight:700; color:#40501F; margin:0; text-align:center; mso-line-height-rule:exactly; line-height:1.6;">Feeding a vegetarian? <b style="color:#0D4F4F;">Falafel, grilled tofu and plant based chicken</b> are all on&nbsp;the&nbsp;protein&nbsp;list.</p>
                 </td>
               </tr>
 
@@ -541,37 +460,37 @@
 
               
               <tr>
-                <td class="padx" bgcolor="#0D4F4F" style="padding:34px 48px 6px;">
+                <td class="padx" bgcolor="#0D4F4F" style="padding:32px 48px 4px;">
                   <p class="frn" style="font-style:italic; font-weight:600; font-size:16px; color:#A9C46B; margin:0; text-align:center; mso-line-height-rule:exactly; line-height:1.4;">Do the math once, not at the door</p>
-                  <p class="panelBig" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:32px; color:#F2F7E0; line-height:1.12; margin:8px 0 0; text-align:center;">How many kits?</p>
+                  <p class="panelBig" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:32px; color:#F2F7E0; line-height:1.12; margin:6px 0 0; text-align:center;">How many kits?</p>
                 </td>
               </tr>
               <tr>
-                <td class="padx" bgcolor="#0D4F4F" style="padding:20px 48px 4px;">
+                <td class="padx" bgcolor="#0D4F4F" style="padding:18px 48px 4px;">
                   <table role="presentation" class="panelgrid" width="498" cellpadding="0" cellspacing="0" border="0" style="width:498px; max-width:100%;">
                     <tr>
                       <td class="stack3 headcell" width="166" valign="top" align="center" style="width:166px; padding:0 10px 0 0;">
-                        <p style="font-size:15px; font-weight:800; color:#BFD8D8; margin:0 0 4px; mso-line-height-rule:exactly; line-height:1.4;">4 to 5 people</p>
+                        <p style="font-size:15px; font-weight:800; color:#BFD8D8; margin:0 0 4px; mso-line-height-rule:exactly; line-height:1.4;">4&nbsp;to&nbsp;5 people</p>
                         <p class="stepNum" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:34px; color:#BCD741; margin:0 0 4px; line-height:1.1;">1 kit</p>
-                        <p style="font-size:14px; font-weight:800; color:#F2F7E0; margin:0; mso-line-height-rule:exactly; line-height:1.4;">70 points</p>
+                        <p style="font-size:14px; font-weight:800; color:#F2F7E0; margin:0; mso-line-height-rule:exactly; line-height:1.4;">70&nbsp;points</p>
                       </td>
                       <td class="stack3 headcell" width="166" valign="top" align="center" style="width:166px; padding:0 10px;">
-                        <p style="font-size:15px; font-weight:800; color:#BFD8D8; margin:0 0 4px; mso-line-height-rule:exactly; line-height:1.4;">8 to 10 people</p>
+                        <p style="font-size:15px; font-weight:800; color:#BFD8D8; margin:0 0 4px; mso-line-height-rule:exactly; line-height:1.4;">8&nbsp;to&nbsp;10 people</p>
                         <p class="stepNum" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:34px; color:#BCD741; margin:0 0 4px; line-height:1.1;">2 kits</p>
-                        <p style="font-size:14px; font-weight:800; color:#F2F7E0; margin:0; mso-line-height-rule:exactly; line-height:1.4;">140 points</p>
+                        <p style="font-size:14px; font-weight:800; color:#F2F7E0; margin:0; mso-line-height-rule:exactly; line-height:1.4;">140&nbsp;points</p>
                       </td>
                       <td class="stack3 headcell" width="166" valign="top" align="center" style="width:166px; padding:0 0 0 10px;">
                         <p style="font-size:15px; font-weight:800; color:#BFD8D8; margin:0 0 4px; mso-line-height-rule:exactly; line-height:1.4;">12 and up</p>
                         <p class="stepNum" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:34px; color:#BCD741; margin:0 0 4px; line-height:1.1;">3 kits</p>
-                        <p style="font-size:14px; font-weight:800; color:#BCD741; margin:0; mso-line-height-rule:exactly; line-height:1.4;">210 points</p>
+                        <p style="font-size:14px; font-weight:800; color:#BCD741; margin:0; mso-line-height-rule:exactly; line-height:1.4;">210&nbsp;points</p>
                       </td>
                     </tr>
                   </table>
                 </td>
               </tr>
               <tr>
-                <td class="padx" bgcolor="#0D4F4F" style="padding:18px 48px 38px;" align="center">
-                  <p style="font-size:15px; color:#BFD8D8; mso-line-height-rule:exactly; line-height:1.7; font-weight:600; margin:0 0 20px; text-align:center;">Three kits is 210 points, and a free meal costs 200. Feed the room today and the next one is on us. Order ahead so it is bagged and waiting when you get there.</p>
+                <td class="padx measure" bgcolor="#0D4F4F" style="padding:16px 62px 34px;" align="center">
+                  <p style="font-size:15px; color:#BFD8D8; mso-line-height-rule:exactly; line-height:1.7; font-weight:600; margin:0 0 18px; text-align:center;">Three kits is <b style="color:#BCD741;">210&nbsp;points</b>. A free meal costs 200.</p>
                   <table role="presentation" class="pillcell" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:separate; margin:0 auto;">
                     <tr>
                       <td bgcolor="#BCD741" align="center" style="border-radius:999px; padding:16px 34px; mso-padding-alt:16px 34px;">
@@ -584,37 +503,29 @@
 
               
               <tr>
-                <td class="padx" align="center" bgcolor="#FAD7E4" style="padding:20px 40px;">
-                  <p style="font-size:15px; font-weight:800; color:#0D4F4F; letter-spacing:0.03em; mso-line-height-rule:exactly; line-height:1.6; margin:0;">P.S. Nobody in this town roots for the same team, which is exactly the point of a kit everybody builds themselves. Fifteen locations, seven with a drive-thru. <a href="https://www.crazybowlsandwraps.com/locations?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=locations-ps" style="color:#B02350; text-decoration:underline;">Find&nbsp;yours&nbsp;&#8594;</a></p>
+                <td class="padx" align="center" bgcolor="#FAD7E4" style="padding:18px 40px;">
+                  <p style="font-size:15px; font-weight:800; color:#0D4F4F; letter-spacing:0.03em; mso-line-height-rule:exactly; line-height:1.6; margin:0;">Fifteen locations, seven with a drive-thru. Order ahead and it is bagged and waiting. <a href="https://www.crazybowlsandwraps.com/locations?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=locations-ps" style="color:#B02350; text-decoration:underline;">Find&nbsp;yours&nbsp;&#8594;</a></p>
                 </td>
               </tr>
 
               
               <tr>
-                <td class="padx" align="center" bgcolor="#DBEAE9" style="padding:20px 40px;">
-                  <p style="font-size:14px; font-weight:800; color:#0D4F4F; letter-spacing:0.03em; margin:0; mso-line-height-rule:exactly; line-height:1.7;">And on Thursdays, the craft drink rides free with $20+. <a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=cross-promo-thursday" style="color:#0D4F4F; text-decoration:underline;">See&nbsp;you&nbsp;then&nbsp;&#8594;</a></p>
+                <td class="padx" align="center" bgcolor="#FFF6EC" style="padding:24px 40px 26px;">
+                  <a href="https://www.crazybowlsandwraps.com?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=ribbon" style="text-decoration:none;"><img class="ribbonimg" src="https://paytronix-bee.s3.amazonaws.com/images/bos1px-MID60504-user/Every%20is%20crazy%20about%20something%20ribbon.png" alt="Everyone&rsquo;s crazy about something" width="340" style="display:block; margin:0 auto 12px; width:340px; max-width:100%; height:auto; border:0;"></a>
+                  <p style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:32px; mso-line-height-rule:at-least; line-height:1.1; color:#0D4F4F; margin:0;">Go for the good.</p>
                 </td>
               </tr>
 
               
               <tr>
-                <td class="padx" align="center" bgcolor="#FFF6EC" style="padding:26px 40px 30px;">
-                  <a href="https://www.crazybowlsandwraps.com?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=ribbon" style="text-decoration:none;"><img class="ribbonimg" src="https://paytronix-bee.s3.amazonaws.com/images/bos1px-MID60504-user/Every%20is%20crazy%20about%20something%20ribbon.png" alt="Everyone&rsquo;s crazy about something" width="360" style="display:block; margin:0 auto 14px; width:360px; max-width:100%; height:auto; border:0;"></a>
-                  <p style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:34px; mso-line-height-rule:at-least; line-height:1.1; color:#0D4F4F; margin:0;">Go for the good.</p>
-                  <p style="font-size:14px; font-weight:800; margin:16px 0 0;"><a href="https://www.instagram.com/crazybowlsandwraps/?hl=en&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=instagram" style="color:#5F7010; text-decoration:none;">@crazybowlsandwraps &middot; show us the spread</a></p>
-                </td>
-              </tr>
-
-              
-              <tr>
-                <td class="padx" bgcolor="#0D4F4F" style="padding:38px 40px 36px;">
-                  <p style="font-size:13px; font-weight:800; letter-spacing:0.28em; text-transform:uppercase; color:#A9C46B; margin:0 0 22px; text-align:center; mso-line-height-rule:exactly; line-height:1.4;">#GoForTheGood</p>
-                  <p class="footnav" style="font-size:13px; letter-spacing:0.1em; color:#fff; margin:0 0 14px; text-align:center; mso-line-height-rule:exactly; line-height:1.8;">
+                <td class="padx" bgcolor="#0D4F4F" style="padding:32px 40px 32px;">
+                  <p style="font-size:13px; font-weight:800; letter-spacing:0.28em; text-transform:uppercase; color:#A9C46B; margin:0 0 18px; text-align:center; mso-line-height-rule:exactly; line-height:1.4;">#GoForTheGood</p>
+                  <p class="footnav" style="font-size:13px; letter-spacing:0.1em; color:#fff; margin:0 0 12px; text-align:center; mso-line-height-rule:exactly; line-height:1.8;">
                     <a href="https://www.crazybowlsandwraps.com/locations?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=footer-locations" style="color:#fff; text-decoration:none; font-weight:800;">LOCATIONS</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
                     <a href="https://crazybowlsandwraps.myguestaccount.com?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=footer-account" style="color:#fff; text-decoration:none; font-weight:800;">MY ACCOUNT</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
                     <a href="https://www.crazybowlsandwraps.com/menu?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=footer-menu" style="color:#fff; text-decoration:none; font-weight:800;">MENU</a>
                   </p>
-                  <p style="font-size:13px; color:#C0D8D8; margin:0 0 20px; text-align:center; mso-line-height-rule:exactly; line-height:1.6;">
+                  <p style="font-size:13px; color:#C0D8D8; margin:0 0 18px; text-align:center; mso-line-height-rule:exactly; line-height:1.6;">
                     <a href="https://www.instagram.com/crazybowlsandwraps/?hl=en&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=footer-instagram" style="color:#C0D8D8; text-decoration:none; font-weight:700;">Instagram</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
                     <a href="https://www.facebook.com/crazybowlsandwraps/?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=footer-facebook" style="color:#C0D8D8; text-decoration:none; font-weight:700;">Facebook</a>
                   </p>
@@ -623,8 +534,8 @@
                       <td style="border-top:1px solid #1F6060; font-size:0; line-height:0;">&nbsp;</td>
                     </tr>
                   </table>
-                  <p style="font-size:13px; mso-line-height-rule:exactly; line-height:1.7; color:#96BCBC; margin:18px 0 0; text-align:center;">
-                    Crazy Bowls &amp; Wraps &middot; Crazy Points: $1 = 1 point, 200 points = a free meal. Tuesdays earn double points on the whole menu; use code THATSAWRAP online, automatic in store for members. Point totals shown are based on the $35 starting price and will be higher once a protein is added. Taco Kit starts at $35.00 and serves 4&ndash;5; protein is priced by selection. Extra Protein serves 4 and is priced separately. A side of chips and salsa and up to 4 drinks are included. Thursdays: one free craft drink with a $20+ order. Calories and nutrition vary with your selections, see the <a href="https://www.crazybowlsandwraps.com/menu?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=footer-nutrition" style="color:#C0D8D8; text-decoration:underline;">full menu</a>. Prices, participation and availability vary by location. No price-altering substitutions.<br>
+                  <p style="font-size:13px; mso-line-height-rule:exactly; line-height:1.7; color:#96BCBC; margin:16px 0 0; text-align:center;">
+                    Crazy Bowls &amp; Wraps &middot; Double Crazy Points on the whole menu today only; code THATSAWRAP online, automatic in store for members. Crazy Points: $1 = 1 point, 200 points = a free meal. Point totals shown are based on the $35 starting price and will be higher once a protein is added. Taco Kit starts at $35.00 and serves 4&ndash;5; protein is priced by selection. A side of chips and salsa and up to 4 drinks are included. Thursdays: one free craft drink with a $20+ order. Calories and nutrition vary with your selections, see the <a href="https://www.crazybowlsandwraps.com/menu?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thats-a-wrap-tuesday-w3&amp;utm_content=footer-nutrition" style="color:#C0D8D8; text-decoration:underline;">full menu</a>. Prices, participation and availability vary by location. No price-altering substitutions.<br>
                     <template:link a:style="color:#C0D8D8;text-decoration:underline;" type="unsubscribe_url">Unsubscribe</template:link>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<template:link a:style="color:#C0D8D8;text-decoration:underline;" type="campaign_view_url">View in Browser</template:link>
                   </p>
                 </td>
