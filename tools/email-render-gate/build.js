@@ -38,6 +38,8 @@ function withImages(h) {
         .replace(/https:\/\/paytronix-bee[^"']*opt_TacoKit_2_Football\.jpg/g, "opt_TacoKit_2_Football.jpg")
         .replace(/https:\/\/paytronix-bee[^"']*opt_TacoKit_3_protein\.jpg/g, "opt_TacoKit_3_protein.jpg")
         .replace(/https:\/\/paytronix-bee[^"']*Logo[^"']*/g, "logo.png")
+        .replace(/https:\/\/paytronix-bee[^"']*10\.55\.02[^"']*/g, "tt_sw.png")
+        .replace(/https:\/\/paytronix-bee[^"']*All%20Drinks_1\.png/g, "tt_lineup.png")
         // Wild Eggs (Mailjet CDN). Mapped by asset UUID to local files of the real dimensions,
         // so the geometry assertions measure the same pixels the send will.
         .replace(/https:\/\/0nlz6\.mjt\.lu[^"']*adb58b99[^"']*/g, "we_logo.png")

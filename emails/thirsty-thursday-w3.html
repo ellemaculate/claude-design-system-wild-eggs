@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- format-detection stops iOS Mail auto-linking "$20" into a blue phone link. -->
+    <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+    <!-- PAYTRONIX PREVIEW TEXT. With raw HTML this is the only place to set inbox preview text,
+         so it must be filled and must match the hidden preheader div word for word. Never a
+         page-title string: Paytronix can surface this as visible copy at the top of the email. -->
+    <title>Strawberry watermelon, horchata, hibiscus. One rides free with any $20 order today.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+
+    <!--[if mso]>
+    <style type="text/css">
+      /* ================================================================
+         OUTLOOK CLASSIC (Word engine) OVERRIDES.
+         Outlook 2007-2024 and classic M365 render with WORD, not a browser.
+         Every rule here exists because of a failure photographed in a
+         previous send. Read the OUTLOOK section in the body comment.
+         ================================================================ */
+
+      /* Windows font substitution takes the FIRST name in the stack, fails to find
+         "Passion One", and maps it through its own substitution table to a default
+         SERIF without ever reaching 'Arial Narrow' or Arial. Naming a real Windows
+         font here is the only reliable fix. Impact is the closest always-present
+         match: condensed, heavy, built for caps. */
+      .dispBig, .dispSub, .couponBig, .panelBig {
+        font-family: Impact, 'Arial Narrow', Arial, sans-serif !important;
+        font-weight: normal !important;
+        letter-spacing: 0 !important;
+        mso-line-height-rule: at-least !important;
+      }
+      .dispBig  { font-size:72px !important; line-height:106% !important; }
+      .dispSub  { font-size:44px !important; line-height:110% !important; }
+      .couponBig{ font-size:30px !important; line-height:112% !important; }
+      .panelBig { font-size:32px !important; line-height:112% !important; }
+
+      /* Everything that is not display type gets a real Windows face. */
+      td, p, a, div, span, h1 { font-family: Arial, Helvetica, sans-serif !important; }
+      .frn { font-family: Georgia, 'Times New Roman', serif !important; }
+
+      /* Word adds its own gutter either side of every table. */
+      table { mso-table-lspace:0pt !important; mso-table-rspace:0pt !important; }
+    </style>
+    <![endif]-->
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #E9EBE4;
+      }
+
+      img {
+        border: 0;
+        line-height: 100%;
+        -ms-interpolation-mode: bicubic;
+      }
+
+      a {
+        color: #0D4F4F;
+      }
+
+      table {
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+
+      /* border-collapse:collapse makes renderers ignore border-radius on a <td>, which paints a
+         square border around a rounded fill. Any rounded+bordered cell must opt back out. */
+      .pillcell {
+        border-collapse: separate !important;
+      }
+
+      h1 {
+        margin: 0;
+        padding: 0;
+        font-weight: inherit;
+      }
+
+      .frn {
+        font-family: 'Fraunces', Georgia, serif;
+      }
+
+      /* ============================================================
+         MOTION LAYER: Apple Mail / iOS only. First frame reads static.
+
+         THE WHOLE BLOCK IS WRAPPED IN @media screen ON PURPOSE. In the
+         previous build these classes sat in the GLOBAL stylesheet, which
+         means Word read display:inline-block on the sparkles, the arrow and
+         the headline wrapper. Word does not support inline-block; it treats
+         those as block, and a headline wrapper turning into a full-width
+         block is exactly what made a sibling template collapse.
+         Every inline-block and every transform now lives in here.
+         ============================================================ */
+      @media screen {
+        .m-head {
+          animation: headIn 0.9s cubic-bezier(0.2, 1.4, 0.4, 1) 0.2s backwards;
+          display: inline-block;
+        }
+
+        /* The first frame is the FINISHED state on purpose. The previous build animated
+           from opacity:0, so any client that parsed the keyframes but stalled the
+           animation rendered the headline invisible, and a frame-zero capture showed a
+           missing element. Transform only, never opacity. */
+        @keyframes headIn {
+          from {
+            transform: scale(0.9) translateY(10px);
+          }
+
+          to {
+            transform: scale(1) translateY(0);
+          }
+        }
+
+        .m-spark1,
+        .m-spark2 {
+          display: inline-block;
+          animation: twinkle 2.2s ease-in-out infinite;
+        }
+
+        .m-spark2 {
+          animation-delay: 1.1s;
+        }
+
+        /* floor at 0.35 rather than 0.25 so a sparkle never reads as a rendering fault */
+        @keyframes twinkle {
+
+          0%,
+          100% {
+            transform: scale(1);
+          }
+
+          50% {
+            transform: scale(0.74);
+          }
+        }
+
+        .m-chip1 {
+          animation: rockA 4s ease-in-out infinite;
+        }
+
+        .m-chip2 {
+          animation: rockB 4s ease-in-out 0.6s infinite;
+        }
+
+        @keyframes rockA {
+
+          0%,
+          100% {
+            transform: rotate(-2.5deg);
+          }
+
+          50% {
+            transform: rotate(-0.5deg) translateY(-3px);
+          }
+        }
+
+        @keyframes rockB {
+
+          0%,
+          100% {
+            transform: rotate(1.5deg);
+          }
+
+          50% {
+            transform: rotate(3deg) translateY(-3px);
+          }
+        }
+
+        .m-arrow {
+          display: inline-block;
+          animation: nudge 1.6s ease-in-out infinite;
+        }
+
+        @keyframes nudge {
+
+          0%,
+          100% {
+            transform: translateX(0);
+          }
+
+          50% {
+            transform: translateX(5px);
+          }
+        }
+
+        /* ---- DISPLAY TYPE UPGRADE ----
+           The inline styles carry Word-safe sizes and line-heights. These rules scale
+           them to the intended editorial sizes for clients with a real layout engine.
+           Word never reads @media, so it keeps the safe values, and nothing that
+           prevents a collision depends on a conditional comment surviving the paste. */
+        .dispBig {
+          font-size: 96px;
+          line-height: 0.92;
+          letter-spacing: 0.01em;
+        }
+
+        .dispSub {
+          font-size: 52px;
+          line-height: 1;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+        }
+      }
+
+      @media only screen and (max-width:620px) {
+
+        /* the 600px shells MUST be forced to 100% here. max-width:100% alone cannot shrink a
+           fixed-width table, so the outer wrapper expands to its 600px content and the whole
+           email renders 600px wide inside a 375px phone. Keep .w600. */
+        .w600 {
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+
+        .dispBig {
+          font-size: 68px !important;
+        }
+
+        .dispSub {
+          font-size: 38px !important;
+          letter-spacing: 0.08em !important;
+        }
+
+        .couponBig {
+          font-size: 26px !important;
+        }
+
+        .panelBig {
+          font-size: 30px !important;
+        }
+
+        /* EVERY nested table with a fixed px width must be released here. A fixed length on
+           any nested element becomes a min-content floor for the WHOLE email that no amount
+           of width:100% on .w600 can override. */
+        .panelgrid {
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+
+        .padx {
+          padding-left: 24px !important;
+          padding-right: 24px !important;
+        }
+
+        .padxs {
+          padding-left: 22px !important;
+          padding-right: 22px !important;
+        }
+
+        /* Body copy is set to a comfortable measure on desktop using big side padding. On a
+           phone that same padding is what produces ragged two-word last lines, so it comes off. */
+        .measure {
+          padding-left: 26px !important;
+          padding-right: 26px !important;
+        }
+      }
+
+      /* Narrow-screen padding. Cells that never carried .padx kept 40px sides at every width. */
+      @media only screen and (max-width:400px) {
+        .padx {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+
+        .padxs {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+
+        .measure {
+          padding-left: 18px !important;
+          padding-right: 18px !important;
+        }
+
+        .dispBig {
+          font-size: 56px !important;
+        }
+
+        .dispSub {
+          font-size: 30px !important;
+        }
+
+        .couponBig {
+          font-size: 23px !important;
+        }
+
+        .panelBig {
+          font-size: 26px !important;
+        }
+
+        .footnav {
+          letter-spacing: 0.02em !important;
+          font-size: 12px !important;
+        }
+
+        .lineup {
+          font-size: 13px !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body style="margin:0; padding:0; background:#E9EBE4;">
+    <!-- ============================================================
+  CRAZY BOWLS AND WRAPS: THIRSTY THURSDAY, "SIP HAPPENS"
+  Campaign: thirsty-thursday-w3. Sends Thursday.
+  MECHANIC: free regular craft drink with any $20+ order, Thursdays. Code THIRSTTRAP online,
+  mention it in store.
+  Paste into Paytronix (Source view). Comments stay ASCII-only: Paytronix mangles box-chars
+  and emoji in comments into question marks.
+
+  Campaign name continues the thirsty-thursday series so GA4 can compare Thursday to Thursday.
+
+  ---------------------------------------------------------------
+  WHAT CAME OUT OF THE PREVIOUS BUILD, AND WHY
+  ---------------------------------------------------------------
+   - THE ANNOTATED HERO. It was a background-image cell with handwritten labels floated on top,
+     held together by a VML v:rect for Outlook. That is the single most fragile structure in
+     email: a fixed-height background cell, a percentage-positioned text overlay, and a
+     conditional comment all having to survive the same paste. It is now a plain img with real
+     width and height attributes, which cannot fail in any client. The annotations were charming
+     and they were also the only part that could not be made safe.
+   - THE FOUR-THUMBNAIL HIGHLIGHT REEL. Four 125px squares of drinks that were never named
+     individually, sitting above a caption that named all six anyway. The caption does the job.
+   - THE UGC CLOSER PANEL. A second two-column row and a second ask, competing with the one
+     that matters today.
+   - THE SECOND CHECKERBOARD STRIP. One is a signature; two is a pattern the eye has to
+     re-read.
+   - THE THIRD STICKER CHIP ("THURSDAYS ONLY"). The eyebrow already says today only.
+  There are now NO multi-column content rows in this email at all, which removes the entire
+  class of Word failure that blew a sibling shell out to roughly 870px.
+
+  ---------------------------------------------------------------
+  URGENCY: TODAY, NOT "EVERY THURSDAY"
+  ---------------------------------------------------------------
+  An offer described as permanent gives nobody a reason to act now. Every guest-facing mention
+  is scoped to today: the top bar, the eyebrow, the body and the terms. The programme NAME
+  (Thirsty Thursday) stays, because that is the brand's name for the day, not a claim about how
+  long it runs.
+
+  ---------------------------------------------------------------
+  IMAGES: LIVE PAYTRONIX URLS, MAPPED BY MEASURED ASPECT RATIO
+  ---------------------------------------------------------------
+  Word ignores object-fit ENTIRELY and stretches every image to its width= and height=
+  attributes, so both images carry BOTH the HTML attributes and matching inline px, computed
+  from the measured native ratio. If you swap a photo, recompute the height or Word distorts it.
+
+   HERO = "Screenshot 2026-08-24 at 10.55.02 AM.png"  1314x1372  ratio 0.9577  renders 600x626
+           The Strawberry Watermelon: pink iced drink in a branded cup with watermelon, lime and
+           mint. Confirmed by Elle 2026-08-25 as the featured pour; the asset carries a NEW badge.
+           SIZING NOTE, and the reason this moved: the previous build put this file in a 276px
+           side panel, which is 4.8x its rendered slot. The render gate fails anything over 3x,
+           because oversize is invisible in every preview and only costs the guest mobile data.
+           Full bleed at 600 it lands at 2.2x, which is correct for retina.
+
+   LINEUP = "All Drinks_1.png"  906x690  ratio 1.3130  renders 600x457
+           The craft drink lineup in branded cups. It replaces the four-thumbnail reel: one
+           honest photograph of all of them beats four crops that name none of them.
+           This one is 1.5x its slot rather than 2x, so it will be marginally soft on a retina
+           phone. Acceptable for a secondary image; a 1200px re-export would fix it.
+
+   WEIGHT: the two live PNGs are 1.73MB and 862KB. Both are PNGs of photographs, which is the
+   wrong format: re-exported as JPEG at 1200px wide they would be roughly 150-200KB each and
+   visually identical. Worth doing before the next Thursday send.
+
+  ---------------------------------------------------------------
+  OFFER, AS PRINTED
+  ---------------------------------------------------------------
+  Free regular craft drink with any $20+ pre-tax order, Thursdays only. One per order. Not
+  stackable with other offers. Code THIRSTTRAP online, or mention it in store.
+  The lineup named in the caption is the one the previous send published: limeade, strawberry
+  watermelon, hibiscus, horchata, black tea, citrus green tea. No drink is described as
+  available at a particular store, because participation varies.
+
+  ---------------------------------------------------------------
+  OUTLOOK CLASSIC: THE FAILURES, AND THE FIXES
+  ---------------------------------------------------------------
+  1. LINE-HEIGHT BELOW 1 ON DISPLAY TYPE. Word clips the line box to that height but draws the
+     glyphs at full size, so tall caps bleed upward into whatever sits above. The previous build
+     ran the headline block at line-height .9 and two panel heads at .95 and .98.
+     FIX: every inline line-height on display type is at or above 1; the mso stylesheet forces
+     at least 106% with mso-line-height-rule:at-least. The tight sub-1 values live only inside
+     @media screen, which Word never reads.
+     THE DIRECTION MATTERS: the SAFE value is inline, the RISKY value is in the media query,
+     never the reverse. A conditional comment is the most fragile thing in an email, and nothing
+     that prevents a collision may depend on one surviving the paste.
+     NOTE: mso-line-height-rule:exactly is right for BODY copy and harmful on display type.
+  2. DISPLAY TYPE FELL BACK TO A SERIF. Windows font substitution maps an unknown first family
+     through its own table without reaching the CSS fallbacks.
+     FIX: the mso stylesheet names Impact, always present on Windows.
+  3. PADDING ON THE ANCHOR INSIDE A BUTTON. Word does not apply padding to inline elements. The
+     previous build had display:inline-block plus padding on three separate anchors; only the
+     primary CTA had a VML fallback, so the other two collapsed to bare text.
+     FIX: padding on the TD with mso-padding-alt; every anchor is display:block, zero padding.
+     No VML twin is needed and none is used, so a comment-stripping paste still renders.
+  4. PERCENTAGE COLUMNS WITH PERCENTAGE IMAGES. Word cannot resolve that and falls back toward
+     the image's NATIVE width, which is what blew a sibling shell to roughly 870px.
+     FIX: there are no multi-column content rows left in this email at all.
+  5. display:inline-block AND transform IN THE GLOBAL STYLESHEET. Word read both.
+     FIX: the whole motion layer, every inline-block and every transform, sits inside
+     @media screen. The sticker chips are real table cells that render as clean rectangles in
+     Word and rock gently everywhere else.
+  6. box-shadow, border-radius and overflow:hidden are all ignored by Word. Accepted: the pills
+     and cards render as clean rectangles. Nothing breaks.
+
+  THE CHECKERBOARD STRIP uses percentage widths on purpose. Percentages are dangerous in Word
+  only when a cell has content that can fall back to a native width; these cells are empty
+  decorative colour blocks with an explicit height, so there is nothing to fall back to. A fixed
+  25 x 24px version would be a hard 600px min-content floor and would break every phone.
+
+  MIN-CONTENT FLOOR: a FIXED length anywhere in the tree becomes a min-content floor for the
+  whole email that no width:100% on the shell can release. Verified clean at 320px.
+
+  SUBJECT OPTIONS:
+   A. sip happens (today only)
+   B. Your $20 comes with a free drink
+   C. Hit twenty, the drink is on us
+  PREHEADER OPTIONS (whichever you pick must ALSO replace the title tag copy, word for word):
+   A. Strawberry watermelon, horchata, hibiscus. One rides free with any $20 order today.
+   B. Hit $20 today and one craft drink is free. Code THIRSTTRAP.
+============================================================ -->
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#E9EBE4" style="background:#E9EBE4;">
+      <tr>
+        <td align="center" style="padding:0;">
+
+          <!--[if mso | IE]>
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td width="600" align="center">
+          <![endif]-->
+
+          <div class="w600" style="width:600px; max-width:100%; margin:0 auto; font-family:'Bricolage Grotesque','Open Sans',Arial,Helvetica,sans-serif;">
+
+            <!-- Preheader (hidden inbox preview) -->
+            <div style="display:none; font-size:1px; line-height:1px; max-height:0; max-width:0; overflow:hidden; color:#E9EBE4;">Strawberry watermelon, horchata, hibiscus. One rides free with any $20 order today.</div>
+            <div style="display:none; font-size:1px; line-height:1px; max-height:0; max-width:0; overflow:hidden; color:#E9EBE4;">&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;</div>
+
+            <table role="presentation" class="w600" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:100%; background:#FFF6EC;">
+
+              <!-- top bar -->
+              <tr>
+                <td align="center" bgcolor="#0D4F4F" style="padding:11px 24px; font-size:13px; color:#C0D8D8; letter-spacing:0.02em; mso-line-height-rule:exactly; line-height:1.4;">
+                  Today only. Hit $20, the drink is free. &nbsp;<a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thirsty-thursday-w3&amp;utm_content=topbar-cta" style="color:#BCD741; text-decoration:underline; font-weight:800;">Order&nbsp;now&nbsp;&#8594;</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<template:link a:style="color:#A9C46B;text-decoration:underline;font-weight:700;" type="campaign_view_url">View in browser</template:link>
+                </td>
+              </tr>
+
+              <!-- Checkerboard strip. PERCENTAGES ARE CORRECT HERE and nowhere else in this
+                   email: these cells are empty decorative colour blocks with an explicit
+                   height, so Word has no content to fall back to a native width. A fixed
+                   25 x 24px version would be a hard 600px min-content floor on every phone. -->
+              <tr>
+                <td style="padding:0; line-height:0; font-size:0;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                    <tr>
+                      <td height="18" width="4%" bgcolor="#0D4F4F" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#F2F7E0" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#0D4F4F" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#F2F7E0" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#0D4F4F" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#F2F7E0" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#0D4F4F" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#F2F7E0" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#0D4F4F" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#F2F7E0" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#0D4F4F" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#F2F7E0" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#0D4F4F" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#F2F7E0" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#0D4F4F" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#F2F7E0" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#0D4F4F" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#F2F7E0" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#0D4F4F" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#F2F7E0" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#0D4F4F" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#F2F7E0" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#0D4F4F" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#F2F7E0" style="font-size:0; line-height:0;">&nbsp;</td>
+                      <td height="18" width="4%" bgcolor="#0D4F4F" style="font-size:0; line-height:0;">&nbsp;</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- === HEADER: sticker-book type ===
+                   The sparkles carry display:inline-block, which Word does not support. They
+                   live inside @media screen so Word never sees the declaration; there they are
+                   ordinary inline characters, which is exactly right. -->
+              <tr>
+                <td class="padx" align="center" bgcolor="#FFF6EC" style="padding:34px 30px 6px;">
+                  <p class="m-head" style="margin:0; mso-line-height-rule:at-least; line-height:1.02;">
+                    <span class="m-spark1" style="font-size:26px; color:#DA2D65;">&#10022;</span>
+                    <span class="dispBig" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:900; font-size:64px; line-height:1.02; color:#DA2D65; letter-spacing:0.01em;">SIP</span>
+                    <span class="m-spark2" style="font-size:26px; color:#7B9015;">&#10038;</span>
+                  </p>
+                  <p class="dispSub" style="margin:2px 0 0; font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:44px; color:#0D4F4F; letter-spacing:0.14em; mso-line-height-rule:at-least; line-height:1.05;">HAPPENS</p>
+                  <p style="font-weight:800; font-size:14px; letter-spacing:0.2em; text-transform:uppercase; color:#DA2D65; margin:12px 0 0; mso-line-height-rule:exactly; line-height:1.5;">Thirsty Thursday &middot; today only</p>
+                </td>
+              </tr>
+
+              <!-- === HERO: the featured pour, 1314x1372, renders 600x626 ===
+                   Full bleed. A plain img with real attributes: no background-image, no VML,
+                   no overlay. Nothing here can fail in any client.
+                   It moved from a 276px side panel because at that size it was 4.8x its slot;
+                   the gate fails anything over 3x. Full bleed it lands at 2.2x. -->
+              <tr>
+                <td bgcolor="#0D4F4F" style="padding:0; line-height:0; font-size:0;">
+                  <a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thirsty-thursday-w3&amp;utm_content=hero" style="text-decoration:none; display:block;"><img class="heroimg" src="https://paytronix-bee.s3.amazonaws.com/images/bos1px-MID60504-user/Screenshot%202026-08-24%20at%2010.55.02%E2%80%AFAM.png" alt="The Strawberry Watermelon: a pink iced craft drink in a branded Crazy Bowls and Wraps cup with watermelon, lime and mint" width="600" height="626" style="display:block; width:100%; max-width:100%; height:auto; border:0; margin:0 auto; color:#F2F7E0; font-size:13px;"></a>
+                </td>
+              </tr>
+
+              <!-- === THE OFFER, as two stacked stickers ===
+                   Real table cells with padding on the TD, not divs with inline-block and
+                   padding on an anchor. In Word they are clean rectangles; everywhere else the
+                   @media screen layer rocks them gently. The code is live selectable text and
+                   is never baked into an image, so it can be copied on a phone. -->
+              <tr>
+                <td class="padx" align="center" bgcolor="#FFF6EC" style="padding:30px 40px 0;">
+                  <table role="presentation" class="pillcell m-chip1" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:separate; margin:0 auto;">
+                    <tr>
+                      <td class="padxs" align="center" bgcolor="#7B9015" style="border-radius:14px; padding:16px 28px; mso-padding-alt:16px 28px;">
+                        <p class="couponBig" style="margin:0; font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:30px; color:#ffffff; letter-spacing:0.01em; mso-line-height-rule:at-least; line-height:1.12;">FREE CRAFT DRINK</p>
+                        <p style="margin:3px 0 0; font-size:12px; font-weight:800; letter-spacing:0.14em; color:#F2F7E0; mso-line-height-rule:exactly; line-height:1.4;">WITH ANY $20+ ORDER</p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="padx" align="center" bgcolor="#FFF6EC" style="padding:12px 40px 0;">
+                  <table role="presentation" class="pillcell m-chip2" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:separate; margin:0 auto;">
+                    <tr>
+                      <td align="center" bgcolor="#0D4F4F" style="border-radius:14px; padding:13px 24px; mso-padding-alt:13px 24px; font-size:15px; font-weight:800; letter-spacing:0.06em; color:#F2F7E0; mso-line-height-rule:exactly; line-height:1.3;">code: <span style="color:#A3BF1E; letter-spacing:0.16em;">THIRSTTRAP</span></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- === LEAD + PRIMARY CTA ===
+                   Padding on the TD, never on the anchor: Word does not apply padding to inline
+                   elements, which collapsed two of the three buttons in the previous build. -->
+              <tr>
+                <td class="padx measure" align="center" bgcolor="#FFF6EC" style="padding:22px 62px 0;">
+                  <p style="font-size:17px; color:#42513f; mso-line-height-rule:exactly; line-height:1.7; font-weight:600; margin:0;">Hey <template:insert field="first_name">there</template:insert>, hit twenty today and one craft drink is free. Pick your poison. It&rsquo;s juice.</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="padx" align="center" bgcolor="#FFF6EC" style="padding:22px 40px 34px;">
+                  <table role="presentation" class="pillcell" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:separate; margin:0 auto;">
+                    <tr>
+                      <td align="center" bgcolor="#DA2D65" style="border-radius:999px; padding:17px 42px; mso-padding-alt:17px 42px;">
+                        <a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thirsty-thursday-w3&amp;utm_content=primary-cta" style="display:block; font-size:17px; font-weight:800; letter-spacing:0.02em; color:#ffffff; text-decoration:none; mso-line-height-rule:exactly; line-height:1.1;">Stay hydrated <span class="m-arrow">&#8594;</span></a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- === PICK YOUR FREE ONE ===
+                   One honest photograph of the whole lineup, replacing four 125px crops that
+                   named none of them. The caption names all six, which is what the reel was
+                   really for. -->
+              <tr>
+                <td bgcolor="#0D4F4F" style="padding:0; line-height:0; font-size:0;">
+                  <a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thirsty-thursday-w3&amp;utm_content=lineup-photo" style="text-decoration:none; display:block;"><img src="https://paytronix-bee.s3.amazonaws.com/images/bos1px-MID60504-user/All%20Drinks_1.png" alt="The Crazy Bowls and Wraps craft drink lineup in branded cups: limeade, strawberry watermelon, hibiscus, horchata, black tea and citrus green tea" width="600" height="457" style="display:block; width:100%; max-width:100%; height:auto; border:0; margin:0 auto; color:#F2F7E0; font-size:13px;"></a>
+                </td>
+              </tr>
+              <tr>
+                <td class="padx measure" align="center" bgcolor="#0D4F4F" style="padding:24px 62px 30px;">
+                  <p style="font-size:13px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:#BCD741; margin:0 0 8px; mso-line-height-rule:exactly; line-height:1.4;">Pick your free one</p>
+                  <p class="lineup frn" style="font-style:italic; font-size:16px; color:#BFD8D8; margin:0; mso-line-height-rule:exactly; line-height:1.7;">limeade &middot; strawberry&nbsp;watermelon &middot; hibiscus &middot; horchata &middot; black&nbsp;tea &middot; citrus&nbsp;green&nbsp;tea</p>
+                </td>
+              </tr>
+
+              <!-- cross-promo strip: builds the weekly programme habit. Tuesday is the other
+                   half of the week and the two must never be described as the same offer. -->
+              <tr>
+                <td class="padx" align="center" bgcolor="#EAF1CE" style="padding:18px 40px;">
+                  <p style="font-size:15px; font-weight:800; color:#0D4F4F; letter-spacing:0.03em; margin:0; mso-line-height-rule:exactly; line-height:1.7;">P.S. Tuesdays, everything earns 2&times; Crazy Points. <a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thirsty-thursday-w3&amp;utm_content=cross-promo-tuesday" style="color:#DA2D65; text-decoration:underline;">That&rsquo;s&nbsp;a&nbsp;wrap&nbsp;&#8594;</a></p>
+                </td>
+              </tr>
+
+              <!-- footer -->
+              <tr>
+                <td class="padx" bgcolor="#0D4F4F" style="padding:32px 40px 32px;">
+                  <p class="panelBig" style="font-family:'Passion One',Impact,'Arial Narrow',Arial,sans-serif; font-weight:400; font-size:32px; letter-spacing:0.02em; color:#F2F7E0; margin:0 0 4px; text-align:center; mso-line-height-rule:at-least; line-height:1.12;">Everyone&rsquo;s crazy about something.</p>
+                  <p style="font-size:11px; font-weight:800; letter-spacing:0.28em; text-transform:uppercase; color:#A9C46B; margin:0 0 20px; text-align:center; mso-line-height-rule:exactly; line-height:1.5;">#GoForTheGood</p>
+                  <p class="footnav" style="font-size:13px; letter-spacing:0.1em; color:#fff; margin:0 0 12px; text-align:center; mso-line-height-rule:exactly; line-height:1.8;">
+                    <a href="https://www.crazybowlsandwraps.com/locations?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thirsty-thursday-w3&amp;utm_content=footer-locations" style="color:#fff; text-decoration:none; font-weight:800;">LOCATIONS</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+                    <a href="https://crazybowlsandwraps.myguestaccount.com?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thirsty-thursday-w3&amp;utm_content=footer-account" style="color:#fff; text-decoration:none; font-weight:800;">MY ACCOUNT</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+                    <a href="https://www.crazybowlsandwraps.com/menu?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thirsty-thursday-w3&amp;utm_content=footer-menu" style="color:#fff; text-decoration:none; font-weight:800;">MENU</a>
+                  </p>
+                  <p style="font-size:13px; color:#C0D8D8; margin:0 0 18px; text-align:center; mso-line-height-rule:exactly; line-height:1.6;">
+                    <a href="https://www.instagram.com/crazybowlsandwraps/?hl=en&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thirsty-thursday-w3&amp;utm_content=footer-instagram" style="color:#C0D8D8; text-decoration:none; font-weight:700;">Instagram</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+                    <a href="https://www.facebook.com/crazybowlsandwraps/?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=thirsty-thursday-w3&amp;utm_content=footer-facebook" style="color:#C0D8D8; text-decoration:none; font-weight:700;">Facebook</a>
+                  </p>
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td style="border-top:1px solid #1F6060; font-size:0; line-height:0;">&nbsp;</td>
+                    </tr>
+                  </table>
+                  <p style="font-size:13px; mso-line-height-rule:exactly; line-height:1.7; color:#96BCBC; margin:16px 0 0; text-align:center;">
+                    Crazy Bowls &amp; Wraps &middot; One free regular craft drink with any $20+ pre-tax order, today only. One per order. Not stackable with other offers. Code THIRSTTRAP online, or mention it in store. Tuesdays: 2&times; Crazy Points on the whole menu. Prices, participation and availability vary by location.<br>
+                    <template:link a:style="color:#C0D8D8;text-decoration:underline;" type="unsubscribe_url">Unsubscribe</template:link>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<template:link a:style="color:#C0D8D8;text-decoration:underline;" type="campaign_view_url">View in Browser</template:link>
+                  </p>
+                </td>
+              </tr>
+
+            </table>
+
+          </div>
+
+          <!--[if mso | IE]>
+          </td></tr></table>
+          <![endif]-->
+
+        </td>
+      </tr>
+    </table>
+  </body>
+
+</html>
