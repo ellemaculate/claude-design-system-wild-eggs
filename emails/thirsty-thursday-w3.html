@@ -10,7 +10,7 @@
     <!-- PAYTRONIX PREVIEW TEXT. With raw HTML this is the only place to set inbox preview text,
          so it must be filled and must match the hidden preheader div word for word. Never a
          page-title string: Paytronix can surface this as visible copy at the top of the email. -->
-    <title>Strawberry watermelon, horchata, hibiscus. One rides free with any $20 order today.</title>
+    <title>Strawberry watermelon, horchata, hibiscus. Hit $20 today and one is free. Code THIRSTTRAP.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
     <meta name="color-scheme" content="light">
@@ -427,13 +427,17 @@
   MIN-CONTENT FLOOR: a FIXED length anywhere in the tree becomes a min-content floor for the
   whole email that no width:100% on the shell can release. Verified clean at 320px.
 
-  SUBJECT OPTIONS:
-   A. sip happens (today only)
-   B. Your $20 comes with a free drink
-   C. Hit twenty, the drink is on us
-  PREHEADER OPTIONS (whichever you pick must ALSO replace the title tag copy, word for word):
-   A. Strawberry watermelon, horchata, hibiscus. One rides free with any $20 order today.
-   B. Hit $20 today and one craft drink is free. Code THIRSTTRAP.
+  SUBJECT, LOCKED BY ELLE:
+   Sip happens. (the free drink is back)
+
+  PREHEADER, and why it changed when the subject did. The subject now carries the news that
+  the drink is free, so a preheader also leading with "one rides free" was spending the
+  inbox's second line repeating the first. It carries the SPECIFICS instead: which drinks,
+  the threshold, and the code. Two lines, two jobs.
+   LIVE: Strawberry watermelon, horchata, hibiscus. Hit $20 today and one is free. Code THIRSTTRAP.
+   ALT:  Six craft drinks. Hit $20 today and one of them is on us. Code THIRSTTRAP.
+  Whichever is used must ALSO be the title tag copy, WORD FOR WORD. Paytronix takes inbox
+  preview text from the title, so a mismatch means the two compete for the same slot.
 ============================================================ -->
 
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#E9EBE4" style="background:#E9EBE4;">
@@ -447,7 +451,7 @@
           <div class="w600" style="width:600px; max-width:100%; margin:0 auto; font-family:'Bricolage Grotesque','Open Sans',Arial,Helvetica,sans-serif;">
 
             <!-- Preheader (hidden inbox preview) -->
-            <div style="display:none; font-size:1px; line-height:1px; max-height:0; max-width:0; overflow:hidden; color:#E9EBE4;">Strawberry watermelon, horchata, hibiscus. One rides free with any $20 order today.</div>
+            <div style="display:none; font-size:1px; line-height:1px; max-height:0; max-width:0; overflow:hidden; color:#E9EBE4;">Strawberry watermelon, horchata, hibiscus. Hit $20 today and one is free. Code THIRSTTRAP.</div>
             <div style="display:none; font-size:1px; line-height:1px; max-height:0; max-width:0; overflow:hidden; color:#E9EBE4;">&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;</div>
 
             <table role="presentation" class="w600" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:100%; background:#FFF6EC;">
