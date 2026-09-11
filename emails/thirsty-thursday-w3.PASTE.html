@@ -195,15 +195,28 @@
            them to the intended editorial sizes for clients with a real layout engine.
            Word never reads @media, so it keeps the safe values, and nothing that
            prevents a collision depends on a conditional comment surviving the paste. */
+        /* !important IS LOAD BEARING HERE, and its absence was a silent bug. An INLINE
+           font-size beats a class rule in a stylesheet, media query or not, unless the rule
+           is !important. So this whole block was losing to the Word-safe inline values and
+           every modern client was rendering the small size. Word never reads @media, so
+           !important in here cannot reach it and is entirely safe. `upgrade.js` is the gate
+           that catches this; it must pass before this file ships. */
+        /* line-height 1.0, not the 0.92 this block used to ask for. Once the upgrade actually
+           wins, 0.92 at 96px clips the line box 7.7px shorter than the glyphs, and "SIP" bled
+           straight down into "HAPPENS" — the gate measured the gap at -7px across every width.
+           The tight setting was harmless only while the upgrade was silently losing.
+           The 10px top margin overrides the inline margin:2px, which was set against the
+           Word-safe 64px and is far too tight under a 96px cap. */
         .dispBig {
-          font-size: 96px;
-          line-height: 0.92;
-          letter-spacing: 0.01em;
+          font-size: 96px !important;
+          line-height: 1 !important;
+          letter-spacing: 0.01em !important;
         }
 
         .dispSub {
-          font-size: 52px;
-          line-height: 1;
+          font-size: 52px !important;
+          line-height: 1 !important;
+          margin-top: 10px !important;
         }
       }
 

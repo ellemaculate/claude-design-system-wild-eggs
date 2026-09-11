@@ -80,6 +80,31 @@ elements with getBoundingClientRect().width > viewport to name the culprit — n
 Vision review of both screenshots, 6 points: (1) no clipping, (2) no image distortion/squish,
 (3) correct image in correct slot, (4) text contrast, (5) button integrity, (6) all images loaded.
 
+## Gate G2b — the render gate, one command (MANDATORY, replaces ad-hoc capture)
+
+    cd tools/email-render-gate && node check.js ../../emails/<name>.html
+
+Builds six client variants (modern, word, gmail, noimg, nostyle, nocond) and runs, in order:
+
+| stage | catches |
+|---|---|
+| `verify.js` | overflow, shell width, display collisions, button padding, aspect drift, oversize |
+| `upgrade.js` | the `@media screen` display upgrade silently losing to an inline `font-size` |
+| `orphans.js` | a centred block ending on a runt last line |
+| `lint-word.js` | source rules Chromium cannot see (line-height under 1 on display type, etc.) |
+| `strip.js` + `diff.js` | regenerates the PASTE build and proves it renders identically |
+
+Exits non-zero if anything fails. Green is the precondition for delivering — never report a
+gate result that was not just run in this session.
+
+**The specificity rule.** The architecture is: Word-safe size INLINE, editorial size in
+`@media screen`, because Word never reads a media query. An inline `font-size` beats a class
+rule — media query or not — unless the rule carries `!important`, so **every declaration in an
+upgrade block must carry `!important`**. Word never reads `@media`, so it cannot reach Outlook
+Classic and is safe there. Adding it is not a one-liner: the real rendered size goes up, which
+can overflow a cell or collide with a neighbour. Measure with `node measure.js`, which prints
+the widest single word against the width the parent cell actually offers, then re-run the gate.
+
 ## Gate G3 — voice
 
 - ≥6 distinct puns, placed in the reference rhythm (top bar, sub-line, offer line, captions, panel).
@@ -95,6 +120,17 @@ Vision review of both screenshots, 6 points: (1) no clipping, (2) no image disto
 2. Mobile media query: `.stack2 { display:block !important; width:100% !important;
    box-sizing:border-box !important; }` — without border-box, cell padding overflows the
    viewport by ~72px on mobile (latent in QUESO + Thirsty Thursday templates).
+3. **The display-type upgrade block needs `!important` on every declaration.** Without it the
+   inline Word-safe size wins and modern clients render the small type. This was live in five
+   files at once and no geometry assertion could see it, because nothing was broken — it just
+   was not the design. `upgrade.js` is the gate; see G2b.
+4. `<title>` must carry the preheader copy word for word. One send shipped with `<title></title>`
+   and therefore no inbox preview text at all.
+5. `.w600 { width:100%!important; max-width:100%!important }` must exist AND be on both the
+   wrapper div and the shell table. `max-width:100%` alone cannot shrink a fixed-width table,
+   so without the class the email renders 600px wide inside a 375px phone.
+6. Never set a fixed `height` plus `object-fit:cover` on a photo. Word ignores `object-fit` and
+   obeys `height`, so a portrait in a landscape slot ships stretched. Place at native ratio.
 
 ## PACKAGE (always ALL of these — no exceptions)
 

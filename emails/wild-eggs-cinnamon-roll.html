@@ -93,8 +93,13 @@
        these rules scale them to the intended editorial values for clients with a real
        layout engine. Word never reads @media, so it simply keeps the safe values, and
        none of this depends on a conditional comment surviving the paste. */
-    .num  {font-size:74px;line-height:1}
-    .quotemark{font-size:34px;line-height:.7}
+    /* !important IS LOAD BEARING HERE, and its absence was a silent bug. An INLINE font-size
+       beats a class rule in a stylesheet, media query or not, unless the rule is !important,
+       so this block was losing to the Word-safe inline values and every modern client was
+       rendering the small size. Word never reads @media, so !important cannot reach it and is
+       entirely safe. `upgrade.js` is the gate that catches this; it must pass before shipping. */
+    .num  {font-size:74px!important;line-height:1!important}
+    .quotemark{font-size:34px!important;line-height:.7!important}
   }
 
   @media (prefers-reduced-motion: reduce){ *, *::before, *::after {animation:none !important} }

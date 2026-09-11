@@ -17,6 +17,35 @@ If a reply about an email does not contain that code block, the reply is not don
 
 Full detail: `claude/skills/promo-email-loop.md`, RULE ZERO.
 
+## Emails: run the gate before delivering. One command, no exceptions.
+
+    cd tools/email-render-gate && node check.js ../../emails/<name>.html
+
+`check.js` builds the six client variants and runs every gate in order — geometry, specificity,
+orphans, source lint — then regenerates the `.PASTE.html` build and proves master and paste
+render identically. It exits non-zero if anything fails.
+
+- Run it on the MASTER file. The paste build is generated, never hand-edited.
+- Green is the precondition for delivering. If it fails, the email is not ready — say so.
+- Never report a gate result you did not just run. "It passed last time" is not a pass.
+
+Four finished sends shipped with the display-type upgrade silently losing, because each gate
+was run once on the day it was written and never again. One command exists so that cannot
+happen twice.
+
+## Emails: display type — the `@media screen` upgrade needs `!important`
+
+The Word-safe architecture puts the SMALL size inline and scales UP inside `@media screen`,
+because Word never reads a media query. That only works if the class rule wins, and **an inline
+`font-size` beats a class rule — media query or not — unless the rule carries `!important`.**
+
+- Every declaration in a display-type upgrade block carries `!important`.
+- Word never reads `@media`, so `!important` in there cannot reach Outlook Classic. It is safe.
+- Adding it is not a one-line fix: letting the upgrade through raises the REAL rendered size,
+  which can then overflow its cell or collide with its neighbour. Re-measure with
+  `node measure.js` and re-run the gate. Thursday needed `line-height` 0.92 → 1 the moment the
+  upgrade started winning.
+
 ## Emails: the preheader matches the `<title>` tag word for word
 
 Paytronix takes inbox preview text from `<title>`. It must carry the PREHEADER COPY, identical to

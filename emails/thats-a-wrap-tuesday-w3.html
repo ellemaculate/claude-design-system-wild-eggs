@@ -172,25 +172,31 @@
            them to the intended editorial sizes for clients with a real layout engine.
            Word never reads @media, so it keeps the safe values, and nothing that
            prevents a collision depends on a conditional comment surviving the paste. */
+        /* !important IS LOAD BEARING HERE, and its absence was a silent bug. An INLINE
+           font-size beats a class rule in a stylesheet, media query or not, unless the rule
+           is !important. So this whole block was losing to the Word-safe inline values and
+           every modern client was rendering the small size. Word never reads @media, so
+           !important in here cannot reach it and is entirely safe. `upgrade.js` is the gate
+           that catches this; it must pass before this file ships. */
         .dispBig {
-          font-size: 84px;
-          line-height: 0.88;
-          letter-spacing: -0.01em;
+          font-size: 84px !important;
+          line-height: 0.88 !important;
+          letter-spacing: -0.01em !important;
         }
 
         .dispSub {
-          font-size: 32px;
-          line-height: 1.12;
+          font-size: 32px !important;
+          line-height: 1.12 !important;
         }
 
         .couponBig {
-          font-size: 50px;
-          line-height: 1;
+          font-size: 50px !important;
+          line-height: 1 !important;
         }
 
         .panelBig {
-          font-size: 38px;
-          line-height: 1;
+          font-size: 38px !important;
+          line-height: 1 !important;
         }
 
         .m-arrow {

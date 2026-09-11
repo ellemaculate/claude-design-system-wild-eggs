@@ -19,8 +19,32 @@ of them are visible in the markup; all of them are obvious in a bounding box.
     npm i --no-audit --no-fund playwright-core
     mkdir -p site
     # drop placeholder images into site/ sized to the real photos, then:
-    node build.js ../../emails/<file>.html
-    node verify.js
+    node check.js ../../emails/<file>.html
+
+**`check.js` is the whole gate and the only command you need.** It builds the six variants, runs
+every check below in order, regenerates the `.PASTE.html` build and proves master and paste
+render identically. It exits non-zero if any stage fails, so it drops into a hook or CI step
+unchanged. Point it at the MASTER file — the paste build is generated, never hand-edited.
+
+    === thirsty-thursday-w3.html
+      ✓ build   — six client variants
+      ✓ verify  — geometry: overflow, shell width, collisions, buttons, aspect
+      ✓ upgrade — the @media screen display upgrade actually wins
+      ✓ orphans — no centred block ends on a runt last line
+      ✓ lint    — source rules Chromium cannot see
+      ✓ strip   — regenerate the PASTE build
+      ✓ diff    — master vs paste at modern 900, Word 900, mobile 375
+
+The individual scripts still run standalone, which is what the sections below document. Use them
+while iterating; use `check.js` before delivering.
+
+`measure.js` is a tape measure rather than a gate: it prints, for every display element at every
+width, the widest single WORD against the width the parent cell actually offers. The longest word
+is the real constraint, because a line can wrap between words but never inside one. Use it to
+pick a size by arithmetic instead of bisecting.
+
+    node measure.js            # 900,620,414,375,320
+    node measure.js 900,375    # or name the widths
 
 ## The six variants
 

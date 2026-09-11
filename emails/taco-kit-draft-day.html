@@ -164,25 +164,31 @@
            Word never reads @media, so it simply keeps the safe values, and none of this
            depends on a conditional comment surviving the paste into Paytronix. That
            dependency is what let "DRAFT DAY." crash into the chip in production. */
+        /* !important IS LOAD BEARING HERE, and its absence was a silent bug. An INLINE
+           font-size beats a class rule in a stylesheet, media query or not, unless the rule
+           is !important. So this whole block was losing to the Word-safe inline values and
+           every modern client was rendering the small size. Word never reads @media, so
+           !important in here cannot reach it and is entirely safe. `upgrade.js` is the gate
+           that catches this; it must pass before this file ships. */
         .dispBig {
-          font-size: 84px;
-          line-height: 0.88;
-          letter-spacing: -0.01em;
+          font-size: 84px !important;
+          line-height: 0.88 !important;
+          letter-spacing: -0.01em !important;
         }
 
         .dispSub {
-          font-size: 34px;
-          line-height: 1.08;
+          font-size: 34px !important;
+          line-height: 1.08 !important;
         }
 
         .couponBig {
-          font-size: 52px;
-          line-height: 1;
+          font-size: 52px !important;
+          line-height: 1 !important;
         }
 
         .panelBig {
-          font-size: 38px;
-          line-height: 1;
+          font-size: 38px !important;
+          line-height: 1 !important;
         }
 
         .m-arrow {
@@ -774,7 +780,7 @@
               </tr>
               <tr>
                 <td class="padx" bgcolor="#0D4F4F" style="padding:18px 48px 38px;" align="center">
-                  <p style="font-size:15px; color:#BFD8D8; mso-line-height-rule:exactly; line-height:1.7; font-weight:600; margin:0 0 20px; text-align:center;">A ten-team league is two kits, and the queso, chips and drinks are already in the box. Order ahead so it is bagged and waiting when you get there.</p>
+                  <p style="font-size:15px; color:#BFD8D8; mso-line-height-rule:exactly; line-height:1.7; font-weight:600; margin:0 0 20px; text-align:center;">A ten-team league is two kits, and the queso, chips and drinks are already in the box. Order ahead so it is bagged and waiting when&nbsp;you&nbsp;get&nbsp;there.</p>
                   <table role="presentation" class="pillcell" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:separate; margin:0 auto;">
                     <tr>
                       <td bgcolor="#BCD741" align="center" style="border-radius:999px; padding:16px 34px; mso-padding-alt:16px 34px;">

@@ -159,25 +159,31 @@
            Word never reads @media, so it simply keeps the safe values, and none of this
            depends on a conditional comment surviving the paste into Paytronix. That
            dependency is what let "DRAFT DAY." crash into the chip in production. */
+        /* !important IS LOAD BEARING HERE, and its absence was a silent bug. An INLINE
+           font-size beats a class rule in a stylesheet, media query or not, unless the rule
+           is !important. So this whole block was losing to the Word-safe inline values and
+           every modern client was rendering the small size. Word never reads @media, so
+           !important in here cannot reach it and is entirely safe. `upgrade.js` is the gate
+           that catches this; it must pass before this file ships. */
         .dispBig {
-          font-size: 84px;
-          line-height: 0.88;
-          letter-spacing: -0.01em;
+          font-size: 84px !important;
+          line-height: 0.88 !important;
+          letter-spacing: -0.01em !important;
         }
 
         .dispSub {
-          font-size: 34px;
-          line-height: 1.08;
+          font-size: 34px !important;
+          line-height: 1.08 !important;
         }
 
         .couponBig {
-          font-size: 52px;
-          line-height: 1;
+          font-size: 52px !important;
+          line-height: 1 !important;
         }
 
         .panelBig {
-          font-size: 38px;
-          line-height: 1;
+          font-size: 38px !important;
+          line-height: 1 !important;
         }
 
         .m-arrow {
@@ -343,6 +349,7 @@
   </head>
 
   <body style="margin:0; padding:0; background:#E4E7E1;">
+    
 
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#E4E7E1" style="background:#E4E7E1;">
       <tr>
@@ -354,29 +361,34 @@
 
           <div class="w600" style="width:600px; max-width:100%; margin:0 auto; font-family:'Bricolage Grotesque','Open Sans',Arial,Helvetica,sans-serif;">
 
+            
             <div style="display:none; font-size:1px; line-height:1px; max-height:0; max-width:0; overflow:hidden; color:#E4E7E1;">One Taco Kit serves 4 to 5. Twelve shells, warm queso, chips and drinks included. Starts at $35.</div>
             <div style="display:none; font-size:1px; line-height:1px; max-height:0; max-width:0; overflow:hidden; color:#E4E7E1;">&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;</div>
 
             <table role="presentation" class="w600" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:100%; background:#FFF6EC; border:3px solid #0D4F4F;">
 
+              
               <tr>
                 <td align="center" bgcolor="#0D4F4F" style="padding:11px 24px; font-size:13px; color:#C0D8D8; letter-spacing:0.02em; mso-line-height-rule:exactly; line-height:1.4;">
                   Draft week. The board is set. &nbsp;<a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=taco-kit-draft-day&amp;utm_content=topbar-cta" style="color:#BCD741; text-decoration:underline; font-weight:800;">Order the kit &#8594;</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<template:link a:style="color:#A9C46B;text-decoration:underline;font-weight:700;" type="campaign_view_url">View in browser</template:link>
                 </td>
               </tr>
 
+              
               <tr>
                 <td class="padx" align="center" bgcolor="#FFF6EC" style="padding:24px 40px 18px;">
                   <a href="https://www.crazybowlsandwraps.com?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=taco-kit-draft-day&amp;utm_content=logo" style="text-decoration:none;"><img src="https://paytronix-bee.s3.amazonaws.com/images/bos1px-MID60504-user/Crazy%20Bowls%20%26%20Wraps%20Logo%201%20%282%29.png" alt="Crazy Bowls &amp; Wraps" width="210" style="display:block; margin:0 auto; width:210px; max-width:100%; height:auto; border:0;"></a>
                 </td>
               </tr>
 
+              
               <tr>
                 <td bgcolor="#0D4F4F" style="padding:0; line-height:0; font-size:0;">
                   <a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=taco-kit-draft-day&amp;utm_content=hero" style="text-decoration:none; display:block;"><img class="heroimg" src="https://paytronix-bee.s3.amazonaws.com/images/bos1px-MID60504-user/opt_TacoKit_2_Football.jpg" alt="The full Taco Kit spread overhead on a terrazzo counter: tortilla chips, black beans, shredded cheddar, romaine, a bowl of grilled chicken, two cups of pico de gallo, warm queso, forks and napkins, tortillas and two iced drinks, with a two-tone white and brown leather football carrying the Crazy Bowls and Wraps logo resting on the counter beside them" width="600" height="403" style="display:block; width:100%; max-width:100%; height:auto; border:0; margin:0 auto; color:#F2F7E0; font-size:13px;"></a>
                 </td>
               </tr>
 
+              
               <tr>
                 <td class="padx" align="center" bgcolor="#FFF2E6" style="padding:40px 40px 0;">
                   <table role="presentation" class="pillcell" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:separate; margin:0 auto;">
@@ -393,6 +405,7 @@
                 </td>
               </tr>
 
+              
               <tr>
                 <td class="padx" bgcolor="#FFF2E6" style="padding:28px 58px 34px;">
                   <p style="font-size:17px; color:#2C3A2C; mso-line-height-rule:exactly; line-height:1.75; font-weight:600; margin:0 0 14px;">Hey <template:insert field="first_name">there</template:insert>, the draft takes four hours. Deciding what to eat should not take forty minutes of it.</p>
@@ -401,6 +414,7 @@
                 </td>
               </tr>
 
+              
               <tr>
                 <td class="padx" bgcolor="#ffffff" style="padding:34px 48px 8px;">
                   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F2F7E0" style="background:#F2F7E0; border:2px dashed #0D4F4F; border-radius:18px;">
@@ -418,6 +432,7 @@
                 </td>
               </tr>
 
+              
               <tr>
                 <td class="padx" align="center" bgcolor="#ffffff" style="padding:26px 40px 34px;">
                   <table role="presentation" class="pillcell" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:separate; margin:0 auto;">
@@ -430,6 +445,7 @@
                 </td>
               </tr>
 
+              
               <tr>
                 <td class="padx" bgcolor="#ffffff" style="padding:0 48px 10px;">
                   <p style="font-size:13px; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; color:#BC3C96; margin:0 0 4px; text-align:center; mso-line-height-rule:exactly; line-height:1.3;">How the kit works</p>
@@ -459,12 +475,14 @@
                 </td>
               </tr>
 
+              
               <tr>
                 <td class="padx" bgcolor="#EDF3D8" style="padding:16px 48px;">
                   <p style="font-size:14px; font-weight:700; color:#40501F; margin:0; text-align:center; mso-line-height-rule:exactly; line-height:1.6;">Feeding a vegetarian? <b style="color:#0D4F4F;">Falafel, grilled tofu and plant based chicken</b> are all on the protein list, same kit, same board.</p>
                 </td>
               </tr>
 
+              
               <tr>
                 <td bgcolor="#F2F7E0" style="padding:0;">
                   <table role="presentation" class="panelgrid" width="594" cellpadding="0" cellspacing="0" border="0" style="width:594px; max-width:100%;">
@@ -489,12 +507,14 @@
                 </td>
               </tr>
 
+              
               <tr>
                 <td bgcolor="#0D4F4F" style="padding:0; line-height:0; font-size:0;">
                   <a href="https://crazybowlsandwraps.orderexperience.net/locations?catering_only=false&amp;utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=taco-kit-draft-day&amp;utm_content=board-photo" style="text-decoration:none; display:block;"><img src="https://paytronix-bee.s3.amazonaws.com/images/bos1px-MID60504-user/opt_TacoKit_1_hero.jpg" alt="A Taco Kit laid out on branded Crazy Bowls and Wraps paper: tortilla chips spilling from the bag, a bowl of sliced grilled chicken, a stack of flour tortillas, halved avocado, corn salsa, warm queso, black beans, shredded lettuce and two drinks" width="600" height="400" style="display:block; width:100%; max-width:100%; height:auto; border:0; margin:0 auto; color:#F2F7E0; font-size:13px;"></a>
                 </td>
               </tr>
 
+              
               <tr>
                 <td class="padx" bgcolor="#0D4F4F" style="padding:34px 48px 6px;">
                   <p class="frn" style="font-style:italic; font-weight:600; font-size:16px; color:#A9C46B; margin:0; text-align:center; mso-line-height-rule:exactly; line-height:1.4;">Do the math once, not at the door</p>
@@ -523,7 +543,7 @@
               </tr>
               <tr>
                 <td class="padx" bgcolor="#0D4F4F" style="padding:18px 48px 38px;" align="center">
-                  <p style="font-size:15px; color:#BFD8D8; mso-line-height-rule:exactly; line-height:1.7; font-weight:600; margin:0 0 20px; text-align:center;">A ten-team league is two kits, and the queso, chips and drinks are already in the box. Order ahead so it is bagged and waiting when you get there.</p>
+                  <p style="font-size:15px; color:#BFD8D8; mso-line-height-rule:exactly; line-height:1.7; font-weight:600; margin:0 0 20px; text-align:center;">A ten-team league is two kits, and the queso, chips and drinks are already in the box. Order ahead so it is bagged and waiting when&nbsp;you&nbsp;get&nbsp;there.</p>
                   <table role="presentation" class="pillcell" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:separate; margin:0 auto;">
                     <tr>
                       <td bgcolor="#BCD741" align="center" style="border-radius:999px; padding:16px 34px; mso-padding-alt:16px 34px;">
@@ -534,12 +554,14 @@
                 </td>
               </tr>
 
+              
               <tr>
                 <td class="padx" align="center" bgcolor="#FAD7E4" style="padding:20px 40px;">
                   <p style="font-size:15px; font-weight:800; color:#0D4F4F; letter-spacing:0.03em; mso-line-height-rule:exactly; line-height:1.6; margin:0;">P.S. Nobody in this town roots for the same team, which is exactly the point. Fifteen locations, seven with a drive-thru. Order ahead, swing through, be back before the third round. <a href="https://www.crazybowlsandwraps.com/locations?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=taco-kit-draft-day&amp;utm_content=locations-ps" style="color:#B02350; text-decoration:underline;">Find&nbsp;yours&nbsp;&#8594;</a></p>
                 </td>
               </tr>
 
+              
               <tr>
                 <td class="padx" align="center" bgcolor="#FFF6EC" style="padding:26px 40px 8px;">
                   <p class="frn" style="font-style:italic; font-weight:600; font-size:16px; color:#5F7010; margin:0 0 4px; mso-line-height-rule:exactly; line-height:1.4;">Also on the schedule</p>
@@ -554,6 +576,7 @@
                 </td>
               </tr>
 
+              
               <tr>
                 <td class="padx" align="center" bgcolor="#FFF6EC" style="padding:22px 40px 30px;">
                   <a href="https://www.crazybowlsandwraps.com?utm_source=paytronix&amp;utm_medium=email&amp;utm_campaign=taco-kit-draft-day&amp;utm_content=ribbon" style="text-decoration:none;"><img class="ribbonimg" src="https://paytronix-bee.s3.amazonaws.com/images/bos1px-MID60504-user/Every%20is%20crazy%20about%20something%20ribbon.png" alt="Everyone&rsquo;s crazy about something" width="360" style="display:block; margin:0 auto 14px; width:360px; max-width:100%; height:auto; border:0;"></a>
@@ -562,6 +585,7 @@
                 </td>
               </tr>
 
+              
               <tr>
                 <td class="padx" bgcolor="#0D4F4F" style="padding:38px 40px 36px;">
                   <p style="font-size:13px; font-weight:800; letter-spacing:0.28em; text-transform:uppercase; color:#A9C46B; margin:0 0 22px; text-align:center; mso-line-height-rule:exactly; line-height:1.4;">#GoForTheGood</p>
