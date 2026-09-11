@@ -22,7 +22,7 @@ of them are visible in the markup; all of them are obvious in a bounding box.
     node build.js ../../emails/<file>.html
     node verify.js
 
-## The four variants
+## The six variants
 
 | variant | stands in for |
 |---|---|
@@ -30,6 +30,8 @@ of them are visible in the markup; all of them are obvious in a bounding box.
 | `word.html` | **Outlook Classic on Windows** (2007-2024 and classic M365) |
 | `gmail.html` | Gmail's extra property stripping |
 | `noimg.html` | images blocked, the default first-open state in most corporate inboxes |
+| `nostyle.html` | clients that drop the `<style>` block entirely |
+| `nocond.html` | clients that discard conditional comments |
 
 ## The Word transform
 
@@ -76,6 +78,37 @@ Two instances were pinning this template:
 
 Percentage lengths contribute zero. Use `max-width:100%` on images, and release any
 fixed-width nested table inside the mobile media query.
+
+## The specificity gate — `upgrade.js`
+
+    node upgrade.js ../../emails/<file>.html
+
+The Word-safe architecture puts the **small** size inline and scales **up** inside
+`@media screen`, because Word never reads a media query. That only works if the
+class rule actually wins. It usually does not:
+
+> An inline `font-size` beats a class rule in a stylesheet, media query or not,
+> unless the rule carries `!important`.
+
+Without it the upgrade silently loses and every modern client renders the small
+Word-safe size — the email still passes every geometry assertion, because nothing
+is broken, it is just wrong everywhere. `upgrade.js` renders the modern build at
+900px and asserts the computed size is **strictly larger** than the inline value
+for every display class that declares an upgrade.
+
+The fix is never a blind `!important` add. Letting the upgrade through raises the
+real rendered size, which can then overflow its cell: this template needed
+140px → 124px at the same time, because "QUESO." measures 553px inside a 520px
+cell at 140px. Re-measure after adding it.
+
+## The orphan gate — `orphans.js`
+
+    node orphans.js ../../emails/<file>.html
+
+Measures the last rendered line of every centred block at seven widths in both
+engines and fails a last line under 22% of the measure. A one-word last line is
+only visible at render time; it is invisible in the source, and it moves when the
+copy around it changes. Legal paragraphs over 260 characters are exempt.
 
 ## Adding an assertion
 
